@@ -1,4 +1,4 @@
-### Skeleton key 1.1 ###
+### Skeleton 1.1 ###
 
 ######     [!] Special thanks: Z0mB13Do77 [!]
 
