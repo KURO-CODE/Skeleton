@@ -27,5 +27,6 @@
 
 # Use #
 
+* cd Skeleton
 *  chmod +x skeleton.sh
 * sudo ./skeleton.sh
