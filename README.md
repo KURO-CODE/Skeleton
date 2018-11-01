@@ -2,11 +2,11 @@
 
 ######     [!] Special thanks: Z0mB13Do77 [!]
 
-![skeleton1.1.jpg](https://github.com/KURO-CODE/Skeleton/blob/master/skeleton1.1.jpg)
+![skeleton1.2.jpg](https://github.com/KURO-CODE/Skeleton/blob/master/skeleton1.2.jpg)
 
 * Skeleton is a Social Engineering tool attack switcher
 * Type: Phishing Tool
-* Attack Switcher for phishing: Facebook, Pinterest, Linkedin, Twitter.
+* Attack Switcher for phishing: Facebook, Linkedin, Twitter, Pinterest, Google, Instagram, Microsoft, Netflix.
 
 # DISCLAMER: Program for educational purposes!!!
 
@@ -24,6 +24,20 @@
 
 * Attack Switcher BugFix
 * Exit (Revision)
+
+# Skeleton 1.2
+* Ver:....1.2        
+* Date:...10/28/2018   
+* coder:...KURO-CODE   
+
+* BugFix
+
+* ~~~ Sites ~~~
+
+* Google
+* Instagram
+* Microsoft
+* Netflix
 
 # Use #
 
