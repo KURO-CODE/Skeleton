@@ -11,7 +11,7 @@
 # DISCLAMER: Program for educational purposes!!!
 
 # Skeleton 1.0 beta
-* Name:....Skeleton
++ Name:....Skeleton
 * Dev:.....Bash
 * Ver:.....1.0 beta
 * Date:....08/14/2017
