@@ -12,7 +12,7 @@
 
 # Skeleton 1.0 beta
 * Name:....Skeleton
-* Dev:.....Bash
+* Dev:.....Shell
 * Ver:.....1.0 beta
 * Date:....08/14/2017
 * Coder:...Kuro-code
