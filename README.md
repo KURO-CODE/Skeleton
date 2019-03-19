@@ -1,8 +1,8 @@
-### Skeleton 1.2 ###
+### Skeleton 1.3 ###
 
 ######     [!] Special thanks: Z0mB13Do77 [!]
 
-![skeleton1.2.jpg](https://github.com/KURO-CODE/Skeleton/blob/master/skeleton1.2.jpg)
+![skeleton1.3.jpg](https://github.com/KURO-CODE/Skeleton/blob/master/Skeleton1.3.jpg)
 
 * Skeleton is a Social Engineering tool attack switcher
 * Type: Phishing Tool
@@ -39,8 +39,16 @@
 * Microsoft
 * Netflix
 
+
+# Skeleton 1.3
+* Ver:....1.3        
+* Date:...03/19/2019   
+* coder:...KURO-CODE   
+
+* BugFix
+
 # Use #
 
 * cd Skeleton
-*  chmod +x skeleton.sh
+* chmod +x skeleton.sh
 * sudo ./skeleton.sh
