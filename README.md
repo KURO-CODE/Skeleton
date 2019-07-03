@@ -32,7 +32,7 @@
 
 * BugFix
 
-* ~~~ Sites ~~~
+*  Sites
 
 * Google
 * Instagram
