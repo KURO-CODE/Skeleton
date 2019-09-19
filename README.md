@@ -2,7 +2,7 @@
 
 ######     [!] Special thanks: Z0mB13Do77 [!]
 
-![skeleton1.3.jpg](https://github.com/KURO-CODE/Skeleton/blob/master/Skeleton1.3.jpg)
+![skeleton1.4.jpg](https://github.com/KURO-CODE/Skeleton/blob/master/skeleton.jpg)
 
 * Skeleton is a Social Engineering tool attack switcher
 * Type: Phishing Tool
@@ -26,8 +26,8 @@
 * Exit (Revision)
 
 # Skeleton 1.2
-* Ver:....1.2        
-* Date:...10/28/2018   
+* Ver:.....1.2        
+* Date:....10/28/2018   
 * coder:...KURO-CODE   
 
 * BugFix
@@ -39,13 +39,21 @@
 * Microsoft
 * Netflix
 
-
 # Skeleton 1.3
-* Ver:....1.3        
-* Date:...03/19/2019   
+* Ver:.....1.3        
+* Date:....03/19/2019   
 * coder:...KURO-CODE   
 
 * BugFix
+
+# Skeleton 1.4
+* Ver:.....1.4        
+* Date:....09/18/2019   
+* coder:...KURO-CODE   
+
+* BugFix
+* Script revision
+* Update Websites
 
 # Use #
 
