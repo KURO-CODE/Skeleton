@@ -1,4 +1,4 @@
-### Skeleton 1.3 ###
+### Skeleton 1.4 ###
 
 ######     [!] Special thanks: Z0mB13Do77 [!]
 
