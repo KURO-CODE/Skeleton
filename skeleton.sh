@@ -515,7 +515,7 @@ function inf {
 	  $W|$CL$G Name:....Skeleton      $EC$W|
 	  $W|$CL$G Dev:.....Shell         $EC$W|
 	  $W|$CL$G Ver:.....$VERSION           $EC$W|
-	  $W|$CL$G Date:....10/28/2018    $EC$W|
+	  $W|$CL$G Date:....08/14/2017    $EC$W|
 	  $W|$CL$G Coder:...Kuro-code     $EC$W|
 	  $W|$CL$G Info:....Phishing tool $EC$W|
 	  ${B}o$W------------------------${B}o$W
