@@ -2,7 +2,7 @@
 
 ######     [!] Special thanks: Z0mB13Do77 [!]
 
-![skeleton.jpg](https://github.com/KURO-CODE/Skeleton/blob/master/skeleton.jpg)
+![skeleton.jpg](https://github.com/KURO-CODE/Skeleton/blob/master/Skeleton.jpg)
 
 * Skeleton is a Social Engineering tool attack switcher
 * Type: Phishing Tool
