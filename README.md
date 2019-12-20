@@ -22,6 +22,7 @@
 * Date:....03/28/2018
 * Coder:...Kuro-code
 
+
 * Attack Switcher BugFix
 * Exit (Revision)
 
@@ -29,6 +30,7 @@
 * Ver:.....1.2
 * Date:....10/28/2018
 * coder:...KURO-CODE
+
 
 * BugFix
 *  Sites
@@ -42,12 +44,14 @@
 * Date:....03/19/2019
 * coder:...KURO-CODE
 
+
 * BugFix
 
 # Skeleton 1.4
 * Ver:.....1.4
 * Date:....09/18/2019
 * coder:...KURO-CODE
+
 
 * BugFix
 * Script revision
@@ -57,6 +61,7 @@
 * Ver:.....1.5
 * Date:....09/20/2019
 * coder:...KURO-CODE
+
 
 * BugFix
 * Script revision
