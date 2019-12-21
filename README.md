@@ -23,8 +23,7 @@
 * Coder:...Kuro-code
 
 
-* Attack Switcher BugFix
-* Exit (Revision)
+ +Attack Switcher BugFix +Exit (Revision)
 
 # Skeleton 1.2
 * Ver:.....1.2
