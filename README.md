@@ -30,13 +30,7 @@
 * Date:....10/28/2018
 * coder:...KURO-CODE
 
-
-* BugFix
-*  Sites
-* Google
-* Instagram
-* Microsoft
-* Netflix
++ BugFix * Sites * Google * Instagram * Microsoft *Netflix
 
 # Skeleton 1.3
 * Ver:.....1.3
