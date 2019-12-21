@@ -22,23 +22,21 @@
 * Date:....03/28/2018
 * Coder:...Kuro-code
 
-
- +Attack Switcher BugFix +Exit (Revision)
++ Attack Switcher, BugFix, Exit (Revision)
 
 # Skeleton 1.2
 * Ver:.....1.2
 * Date:....10/28/2018
 * coder:...KURO-CODE
 
-+ BugFix * Sites * Google * Instagram * Microsoft *Netflix
++ BugFix, Add WebSites: Google, Instagram, Microsoft, Netflix
 
 # Skeleton 1.3
 * Ver:.....1.3
 * Date:....03/19/2019
 * coder:...KURO-CODE
 
-
-* BugFix
++ BugFix
 
 # Skeleton 1.4
 * Ver:.....1.4
@@ -46,20 +44,14 @@
 * coder:...KURO-CODE
 
 
-* BugFix
-* Script revision
-* Update Websites
++ BugFix, Script revision, Update Websites
 
 # Skeleton 1.5
 * Ver:.....1.5
 * Date:....09/20/2019
 * coder:...KURO-CODE
 
-
-* BugFix
-* Script revision
-* Auto Update
-* Update Websites
++ BugFix, Script revision, Auto Update, Update Websites
 
 # Use #
 
