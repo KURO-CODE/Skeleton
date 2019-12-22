@@ -57,4 +57,9 @@
 
 * cd Skeleton
 * chmod +x skeleton.sh
-* sudo ./skeleton.sh
+* ./skeleton.sh
+
+# Or
+
+* cd Skeleton
+* sudo bash ./skeleton.sh
