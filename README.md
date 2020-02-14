@@ -1,9 +1,8 @@
 # Skeleton 1.6
+![](https://img.shields.io/badge/Skeleton-Shell-green.svg)
 ######     [!] Special thanks: Z0mB13Do77 [!]
 
 ![skeleton.jpg](https://github.com/KURO-CODE/Skeleton/blob/master/skeleton.jpg)
-
-![](https://img.shields.io/badge/Skeleton-Shell-green.svg)
 
 * Skeleton is a Social Engineering tool attack switcher
 * Type: Phishing Tool
