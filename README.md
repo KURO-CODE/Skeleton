@@ -1,7 +1,7 @@
 # Skeleton 1.5
 ######     [!] Special thanks: Z0mB13Do77 [!]
 
-![skeleton.jpg](https://github.com/KURO-CODE/Skeleton/blob/master/Skeleton.jpg)
+![skeleton.jpg](https://github.com/KURO-CODE/Skeleton/blob/master/skeleton.jpg)
 
 ![](https://img.shields.io/badge/Skeleton-Shell-green.svg)
 
@@ -53,6 +53,13 @@
 * coder:...KURO-CODE
 
 - BugFix, Script revision, Auto Update, Update Websites
+
+#### Skeleton 1.6
+* Ver:.....1.6
+* Date:....02/14/2020
+* coder:...KURO-CODE
+
+- BugFix, Script revision
 
 #### Use 
 ```bash
