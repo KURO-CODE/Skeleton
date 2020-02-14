@@ -1,4 +1,4 @@
-# Skeleton 1.5
+# Skeleton 1.6
 ######     [!] Special thanks: Z0mB13Do77 [!]
 
 ![skeleton.jpg](https://github.com/KURO-CODE/Skeleton/blob/master/skeleton.jpg)
