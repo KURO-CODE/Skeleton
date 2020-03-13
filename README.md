@@ -1,4 +1,4 @@
-# Skeleton 1.6
+# Skeleton 1.7
 ![](https://img.shields.io/badge/Skeleton-Shell-green.svg)
 ######     [!] Special thanks: Z0mB13Do77 [!]
 
@@ -6,7 +6,7 @@
 
 * Skeleton is a Social Engineering tool attack switcher
 * Type: Phishing Tool
-* Attack Switcher for phishing: Facebook, Linkedin, Twitter, Pinterest, Google, Instagram, Microsoft, Netflix.
+* Attack Switcher for phishing: Facebook, Linkedin, Twitter, Pinterest, Google, Instagram, Microsoft, Netflix, Paypal, Wordpress, Amazon, Ebay, CyberghostVPN, NordVPN, ExpressVPN, ZenmateVPN, PCS, N26, Roblox, Steam, Binance, Etoro, Bittrex, Coinbase.
 
 # DISCLAMER: Program for educational purposes!!!
 
@@ -59,6 +59,14 @@
 * coder:...KURO-CODE
 
 - BugFix, Script revision
+
+#### Skeleton 1.7
+* Ver:.....1.7
+* Date:....14/03/2020
+* coder:...KURO-CODE
+
+- BugFix, Script revision
+- Add: Paypal, Wordpress, Amazon, Ebay, CyberghostVPN, NordVPN, ExpressVPN, ZenmateVPN, PCS, N26, Roblox, Steam, Binance, Etoro, Bittrex, Coinbase
 
 #### Use 
 ```bash
