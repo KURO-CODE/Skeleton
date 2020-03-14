@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:cc="http://web.resource.org/cc/" xmlns:steam="http://www.steampowered.com" xmlns="http://purl.org/rss/1.0/">
+	<channel rdf:about="http://www.steampowered.com">
+		<title>Steam RSS News Feed</title> 
+		<link>http://www.steampowered.com/</link> 
+		<description>All Steam news, all the time!</description> 
+		<language>en</language> 
+				<pubDate>Tue, 18 Feb 2020 10:29:00 -0800</pubDate>
+		<generator>http://www.steampowered.com/</generator> 
+		<items>
+			<rdf:Seq>
+							<rdf:li rdf:resource="https://store.steampowered.com/news/58687/" />
+							<rdf:li rdf:resource="https://store.steampowered.com/news/58686/" />
+							<rdf:li rdf:resource="https://store.steampowered.com/news/58490/" />
+							<rdf:li rdf:resource="https://store.steampowered.com/news/58286/" />
+							<rdf:li rdf:resource="https://store.steampowered.com/news/58260/" />
+							<rdf:li rdf:resource="https://store.steampowered.com/news/58244/" />
+							<rdf:li rdf:resource="https://store.steampowered.com/news/58212/" />
+							<rdf:li rdf:resource="https://store.steampowered.com/news/58231/" />
+							<rdf:li rdf:resource="https://store.steampowered.com/news/58158/" />
+							<rdf:li rdf:resource="https://store.steampowered.com/news/58157/" />
+						</rdf:Seq>
+		</items>
+	</channel>
+					<item rdf:about="https://store.steampowered.com/news/58687/">
+			<title><![CDATA[Daily Deal - The Beast Inside, 25% Off]]></title>
+			<link><![CDATA[https://store.steampowered.com/news/58687/]]></link>
+			<guid isPermaLink="true"><![CDATA[https://store.steampowered.com/news/58687/]]></guid>
+			<comments>https://steamcommunity.com//discussions/</comments>
+			<pubDate>Tue, 18 Feb 2020 10:29:00 -0800</pubDate>
+			<author>Valve</author>
+			<category>Valve news update</category>
+			<dc:subject>Valve news update</dc:subject>
+			<dc:creator>Valve</dc:creator>
+			<dc:date>2020-02-18T10:29:00-0800</dc:date>
+							<steam:appids>
+									<steam:appid>792300</steam:appid>
+								</steam:appids>
+						<content:encoded><![CDATA[Today's Deal: Save 25% on <a href='http://store.steampowered.com/app/792300/'>The Beast Inside</a>!*<br><br>Look for the deals each day on the front page of Steam.  Or follow us on <a href='http://twitter.com/steam_games'>twitter</a> or <a href='http://www.facebook.com/Steam'>Facebook</a> for instant notifications wherever you are!<br><br>*Offer ends Thursday at 10AM Pacific Time<br><a href="http://store.steampowered.com/app/792300/"><img src="https://steamcdn-a.akamaihd.net/steam/apps/792300/header.jpg" style=" float: left; margin-right: 12px; height: 181px; width: 467px;"></a>]]></content:encoded>
+					</item>
+					<item rdf:about="https://store.steampowered.com/news/58686/">
+			<title><![CDATA[Daily Deal - Chef: A Restaurant Tycoon Game, 40% Off]]></title>
+			<link><![CDATA[https://store.steampowered.com/news/58686/]]></link>
+			<guid isPermaLink="true"><![CDATA[https://store.steampowered.com/news/58686/]]></guid>
+			<comments>https://steamcommunity.com//discussions/</comments>
+			<pubDate>Tue, 18 Feb 2020 10:28:00 -0800</pubDate>
+			<author>Valve</author>
+			<category>Valve news update</category>
+			<dc:subject>Valve news update</dc:subject>
+			<dc:creator>Valve</dc:creator>
+			<dc:date>2020-02-18T10:28:00-0800</dc:date>
+							<steam:appids>
+									<steam:appid>886900</steam:appid>
+								</steam:appids>
+						<content:encoded><![CDATA[Today's Deal: Save 40% on <a href='http://store.steampowered.com/app/886900/'>Chef: A Restaurant Tycoon Game</a>!*<br><br>Look for the deals each day on the front page of Steam.  Or follow us on <a href='http://twitter.com/steam_games'>twitter</a> or <a href='http://www.facebook.com/Steam'>Facebook</a> for instant notifications wherever you are!<br><br>*Offer ends Thursday at 10AM Pacific Time<br><a href="http://store.steampowered.com/app/886900/"><img src="https://steamcdn-a.akamaihd.net/steam/apps/886900/header.jpg" style=" float: left; margin-right: 12px; height: 181px; width: 467px;"></a>]]></content:encoded>
+					</item>
+					<item rdf:about="https://store.steampowered.com/news/58490/">
+			<title><![CDATA[Daily Deal - Shortest Trip to Earth, 50% Off]]></title>
+			<link><![CDATA[https://store.steampowered.com/news/58490/]]></link>
+			<guid isPermaLink="true"><![CDATA[https://store.steampowered.com/news/58490/]]></guid>
+			<comments>https://steamcommunity.com//discussions/</comments>
+			<pubDate>Wed, 12 Feb 2020 10:31:00 -0800</pubDate>
+			<author>Valve</author>
+			<category>Valve news update</category>
+			<dc:subject>Valve news update</dc:subject>
+			<dc:creator>Valve</dc:creator>
+			<dc:date>2020-02-12T10:31:00-0800</dc:date>
+							<steam:appids>
+									<steam:appid>812040</steam:appid>
+								</steam:appids>
+						<content:encoded><![CDATA[Today's Deal: Save 50% on <a href='http://store.steampowered.com/app/812040/'>Shortest Trip to Earth</a>!*<br><br>Look for the deals each day on the front page of Steam.  Or follow us on <a href='http://twitter.com/steam_games'>twitter</a> or <a href='http://www.facebook.com/Steam'>Facebook</a> for instant notifications wherever you are!<br><br>*Offer ends Friday at 10AM Pacific Time<br><a href="http://store.steampowered.com/app/812040/"><img src="https://steamcdn-a.akamaihd.net/steam/apps/812040/header.jpg" style=" float: left; margin-right: 12px; height: 181px; width: 467px;"></a>]]></content:encoded>
+					</item>
+					<item rdf:about="https://store.steampowered.com/news/58286/">
+			<title><![CDATA[Daily Deal - Overcrowd: A Commute 'Em Up, 25% Off]]></title>
+			<link><![CDATA[https://store.steampowered.com/news/58286/]]></link>
+			<guid isPermaLink="true"><![CDATA[https://store.steampowered.com/news/58286/]]></guid>
+			<comments>https://steamcommunity.com//discussions/</comments>
+			<pubDate>Thu, 06 Feb 2020 10:12:00 -0800</pubDate>
+			<author>Valve</author>
+			<category>Valve news update</category>
+			<dc:subject>Valve news update</dc:subject>
+			<dc:creator>Valve</dc:creator>
+			<dc:date>2020-02-06T10:12:00-0800</dc:date>
+							<steam:appids>
+									<steam:appid>726110</steam:appid>
+								</steam:appids>
+						<content:encoded><![CDATA[Today's Deal: Save 25% on <a href='http://store.steampowered.com/app/726110/'>Overcrowd: A Commute 'Em Up</a>!*<br><br>Look for the deals each day on the front page of Steam.  Or follow us on <a href='http://twitter.com/steam_games'>twitter</a> or <a href='http://www.facebook.com/Steam'>Facebook</a> for instant notifications wherever you are!<br><br>*Offer ends Saturday at 10AM Pacific Time<br><a href="http://store.steampowered.com/app/726110/"><img src="https://steamcdn-a.akamaihd.net/steam/apps/726110/header.jpg" style=" float: left; margin-right: 12px; height: 181px; width: 467px;"></a>]]></content:encoded>
+					</item>
+					<item rdf:about="https://store.steampowered.com/news/58260/">
+			<title><![CDATA[Daily Deal - Blackwake, 90% Off]]></title>
+			<link><![CDATA[https://store.steampowered.com/news/58260/]]></link>
+			<guid isPermaLink="true"><![CDATA[https://store.steampowered.com/news/58260/]]></guid>
+			<comments>https://steamcommunity.com//discussions/</comments>
+			<pubDate>Wed, 05 Feb 2020 10:04:00 -0800</pubDate>
+			<author>Valve</author>
+			<category>Valve news update</category>
+			<dc:subject>Valve news update</dc:subject>
+			<dc:creator>Valve</dc:creator>
+			<dc:date>2020-02-05T10:04:00-0800</dc:date>
+							<steam:appids>
+									<steam:appid>420290</steam:appid>
+								</steam:appids>
+						<content:encoded><![CDATA[Today's Deal: Save 90% on <a href='http://store.steampowered.com/app/420290/'>Blackwake</a>!*<br><br>Look for the deals each day on the front page of Steam.  Or follow us on <a href='http://twitter.com/steam_games'>twitter</a> or <a href='http://www.facebook.com/Steam'>Facebook</a> for instant notifications wherever you are!<br><br>*Offer ends Monday at 10AM Pacific Time<br><a href="http://store.steampowered.com/app/420290/"><img src="https://steamcdn-a.akamaihd.net/steam/apps/420290/header.jpg" style=" float: left; margin-right: 12px; height: 181px; width: 467px;"></a>]]></content:encoded>
+					</item>
+					<item rdf:about="https://store.steampowered.com/news/58244/">
+			<title><![CDATA[Daily Deal - Swords & Souls: Neverseen, 50% Off]]></title>
+			<link><![CDATA[https://store.steampowered.com/news/58244/]]></link>
+			<guid isPermaLink="true"><![CDATA[https://store.steampowered.com/news/58244/]]></guid>
+			<comments>https://steamcommunity.com//discussions/</comments>
+			<pubDate>Wed, 05 Feb 2020 10:04:00 -0800</pubDate>
+			<author>Valve</author>
+			<category>Valve news update</category>
+			<dc:subject>Valve news update</dc:subject>
+			<dc:creator>Valve</dc:creator>
+			<dc:date>2020-02-05T10:04:00-0800</dc:date>
+							<steam:appids>
+									<steam:appid>679900</steam:appid>
+								</steam:appids>
+						<content:encoded><![CDATA[Today's Deal: Save 50% on <a href='http://store.steampowered.com/app/679900/'>Swords &amp; Souls: Neverseen</a>!*<br><br>Look for the deals each day on the front page of Steam.  Or follow us on <a href='http://twitter.com/steam_games'>twitter</a> or <a href='http://www.facebook.com/Steam'>Facebook</a> for instant notifications wherever you are!<br><br>*Offer ends Friday at 10AM Pacific Time<br><a href="http://store.steampowered.com/app/679900/"><img src="https://steamcdn-a.akamaihd.net/steam/apps/679900/header.jpg" style=" float: left; margin-right: 12px; height: 181px; width: 467px;"></a>]]></content:encoded>
+					</item>
+					<item rdf:about="https://store.steampowered.com/news/58212/">
+			<title><![CDATA[Daily Deal - The Universim, 25% Off]]></title>
+			<link><![CDATA[https://store.steampowered.com/news/58212/]]></link>
+			<guid isPermaLink="true"><![CDATA[https://store.steampowered.com/news/58212/]]></guid>
+			<comments>https://steamcommunity.com//discussions/</comments>
+			<pubDate>Tue, 04 Feb 2020 10:12:00 -0800</pubDate>
+			<author>Valve</author>
+			<category>Valve news update</category>
+			<dc:subject>Valve news update</dc:subject>
+			<dc:creator>Valve</dc:creator>
+			<dc:date>2020-02-04T10:12:00-0800</dc:date>
+							<steam:appids>
+									<steam:appid>352720</steam:appid>
+								</steam:appids>
+						<content:encoded><![CDATA[Today's Deal: Save 25% on <a href='http://store.steampowered.com/app/352720/'>The Universim</a>!*<br><br>Look for the deals each day on the front page of Steam.  Or follow us on <a href='http://twitter.com/steam_games'>twitter</a> or <a href='http://www.facebook.com/Steam'>Facebook</a> for instant notifications wherever you are!<br><br>*Offer ends Thursday at 10AM Pacific Time<br><a href="http://store.steampowered.com/app/352720/"><img src="https://steamcdn-a.akamaihd.net/steam/apps/352720/header.jpg" style=" float: left; margin-right: 12px; height: 181px; width: 467px;"></a>]]></content:encoded>
+					</item>
+					<item rdf:about="https://store.steampowered.com/news/58231/">
+			<title><![CDATA[Daily Deal - Neo Cab, 25% Off]]></title>
+			<link><![CDATA[https://store.steampowered.com/news/58231/]]></link>
+			<guid isPermaLink="true"><![CDATA[https://store.steampowered.com/news/58231/]]></guid>
+			<comments>https://steamcommunity.com//discussions/</comments>
+			<pubDate>Tue, 04 Feb 2020 10:06:00 -0800</pubDate>
+			<author>Valve</author>
+			<category>Valve news update</category>
+			<dc:subject>Valve news update</dc:subject>
+			<dc:creator>Valve</dc:creator>
+			<dc:date>2020-02-04T10:06:00-0800</dc:date>
+							<steam:appids>
+									<steam:appid>794540</steam:appid>
+								</steam:appids>
+						<content:encoded><![CDATA[Today's Deal: Save 25% on <a href='http://store.steampowered.com/app/794540/'>Neo Cab</a>!*<br><br>Look for the deals each day on the front page of Steam.  Or follow us on <a href='http://twitter.com/steam_games'>twitter</a> or <a href='http://www.facebook.com/Steam'>Facebook</a> for instant notifications wherever you are!<br><br>*Offer ends Monday at 10AM Pacific Time<br><a href="http://store.steampowered.com/app/794540/"><img src="https://steamcdn-a.akamaihd.net/steam/apps/794540/header.jpg" style=" float: left; margin-right: 12px; height: 181px; width: 467px;"></a>]]></content:encoded>
+					</item>
+					<item rdf:about="https://store.steampowered.com/news/58158/">
+			<title><![CDATA[Daily Deal - Foundation, 20% Off]]></title>
+			<link><![CDATA[https://store.steampowered.com/news/58158/]]></link>
+			<guid isPermaLink="true"><![CDATA[https://store.steampowered.com/news/58158/]]></guid>
+			<comments>https://steamcommunity.com//discussions/</comments>
+			<pubDate>Mon, 03 Feb 2020 10:06:00 -0800</pubDate>
+			<author>Valve</author>
+			<category>Valve news update</category>
+			<dc:subject>Valve news update</dc:subject>
+			<dc:creator>Valve</dc:creator>
+			<dc:date>2020-02-03T10:06:00-0800</dc:date>
+							<steam:appids>
+									<steam:appid>690830</steam:appid>
+								</steam:appids>
+						<content:encoded><![CDATA[Today's Deal: Save 20% on <a href='http://store.steampowered.com/app/690830/'>Foundation</a>!*<br><br>Look for the deals each day on the front page of Steam.  Or follow us on <a href='http://twitter.com/steam_games'>twitter</a> or <a href='http://www.facebook.com/Steam'>Facebook</a> for instant notifications wherever you are!<br><br>*Offer ends February 10 at 10AM Pacific Time<br><a href="http://store.steampowered.com/app/690830/"><img src="https://steamcdn-a.akamaihd.net/steam/apps/690830/header.jpg" style=" float: left; margin-right: 12px; height: 181px; width: 467px;"></a>]]></content:encoded>
+					</item>
+					<item rdf:about="https://store.steampowered.com/news/58157/">
+			<title><![CDATA[Daily Deal - Regions Of Ruin, 90% Off]]></title>
+			<link><![CDATA[https://store.steampowered.com/news/58157/]]></link>
+			<guid isPermaLink="true"><![CDATA[https://store.steampowered.com/news/58157/]]></guid>
+			<comments>https://steamcommunity.com//discussions/</comments>
+			<pubDate>Mon, 03 Feb 2020 10:04:00 -0800</pubDate>
+			<author>Valve</author>
+			<category>Valve news update</category>
+			<dc:subject>Valve news update</dc:subject>
+			<dc:creator>Valve</dc:creator>
+			<dc:date>2020-02-03T10:04:00-0800</dc:date>
+							<steam:appids>
+									<steam:appid>680360</steam:appid>
+								</steam:appids>
+						<content:encoded><![CDATA[Today's Deal: Save 90% on <a href='http://store.steampowered.com/app/680360/'>Regions Of Ruin</a>!*<br><br>Look for the deals each day on the front page of Steam.  Or follow us on <a href='http://twitter.com/steam_games'>twitter</a> or <a href='http://www.facebook.com/Steam'>Facebook</a> for instant notifications wherever you are!<br><br>*Offer ends Wednesday at 10AM Pacific Time<br><a href="http://store.steampowered.com/app/680360/"><img src="https://steamcdn-a.akamaihd.net/steam/apps/680360/header.jpg" style=" float: left; margin-right: 12px; height: 181px; width: 467px;"></a>]]></content:encoded>
+					</item>
+	</rdf:RDF>

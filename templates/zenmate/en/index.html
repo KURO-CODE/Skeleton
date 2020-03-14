@@ -1,0 +1,2689 @@
+<!DOCTYPE html>
+<html lang="{{currentLanguage}}" ng-app="app" fullscreen="isFullscreen">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+        <base >
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+        <title ng-bind-html="pageTitle">ZenmateVPN</title>
+        <!-- Fallback application metadata for legacy browsers -->
+        <meta name="application-name" content="ZenmateVPN- Account Management">
+        <!-- mobile meta -->
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0"/>
+        <meta name="msapplication-TileColor" content="#f01d4f">
+
+        <meta name="apple-mobile-web-app-title" content="ZM Account">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+                <!-- Startup configuration -->
+        <link rel="manifest" href="http://account.zenmate.com/manifest.json">
+                <!-- Shortcut Icon -->
+        <link rel="shortcut icon" type="image/x-icon" href="https://account.zenmate.com/assets/img/icons/favicon.png">
+
+        <link rel="apple-touch-icon" href="https://account.zenmate.com/assets/icons/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="https://account.zenmate.com/assets/icons/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="https://account.zenmate.com/assets/icons/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://account.zenmate.com/assets/icons/apple-touch-icon-180x180.png">
+<!--        <link rel="apple-touch-startup-image" href="/launch.png">-->
+
+
+                <!-- Fonts -->
+        <link type="text/css" href="http://fonts.googleapis.com/css?family=Lato:400,300,700,800" rel="stylesheet">
+        <link type="text/css" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <!-- Stylesheets -->
+        <style type="text/css">
+            * { font-family: 'Lato', 'Helvetica Neue', 'Helvetica', sans-serif; }
+        </style>
+                <!-- Scripts -->
+        <!-- IE8 support, see AngularJS Internet Explorer Compatibility http://docs.angularjs.org/guide/ie -->
+        <!-- For Firefox 3.6, you will also need to include jQuery and ECMAScript 5 shim -->
+        <!--[if lt IE 9]>
+        <script type="text/javascript">
+            /** Needed for select2 to work in ie8 */
+            document.createElement('ui-select');
+            document.createElement('ui-select-match');
+            document.createElement('ui-select-choices');
+        </script>
+        <![endif]-->
+
+
+        <link href="https://account.zenmate.com/dist/css/styles.css?v=219" media="all" rel="stylesheet" type="text/css" >        <style type="text/css">
+            #preloader {
+                z-index: 999999;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ffffff;
+                text-align: center;
+                line-height: 100%;
+                display: table;
+                width: 100%;
+                height: 100%;
+            }
+            #preloader #preloader-content {
+                display: table-cell;
+                vertical-align: middle;
+            }
+
+            #offline {
+                display: none;
+                z-index: 999998;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ffffff;
+                text-align: center;
+                line-height: 100%;
+                width: 100%;
+                height: 100%;
+            }
+            #offline #offline-content {
+                display: table-cell;
+                vertical-align: middle;
+            }
+            body.offline #offline {
+                display: table;
+            }
+            #content {
+                z-index: 1;
+                /*display: none;*/
+            }
+            body.ready #content {
+                /*display: block;*/
+            }
+            #notloading {
+                display: none;
+                text-align: center;
+            }
+            #notloading.hidden {
+                display: none!important;
+            }
+        </style>
+
+    </head>
+
+    <body  easteregg block-ui="body" class="block-ui-body">
+
+        <notifications-bar class="notifications" close-icon="fa fa-times"></notifications-bar>
+                <div id="notloading">
+            <div class="notification">
+                <h2>Please disable your Adblocker extensions</h2>
+                <p>Some scripts needed for this page could not get loaded.</p>
+            </div>
+        </div>
+
+        <div id="preloader" class="ng-cloak">
+            <div id="preloader-content">
+                <h2 class="text-center ng-cloak" translate="preload.title">Welcome</h2>
+                <loading spinner="true" image="index_files/zm_logo.svg" active="preloaderPercent<100" text="{{preloadText}}" dots="3"></loading>
+                <div class="passQuality progress ng-cloak" style="width: 80%; max-width: 600px; margin: 20px auto 0 auto; box-sizing: border-box">
+                    <div class="progress-bar progress-bar-default" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-attr-style="width: {{preloaderPercent}}%" style="width: 0"></div>
+                </div>
+            </div>
+        </div>
+        <div id="offline" class="ng-cloak">
+            <div id="offline-content">
+                <h2 class="text-center ng-cloak" translate="offline.title">Offline</h2>
+                <p>
+                    <a href class="cg-line-btn cg-line-btn-small cg-blue" ng-click="refreshPage()"><i class="fa fa-refresh"></i> Try again...</a>
+                </p>
+            </div>
+        </div>
+        <div id="content" class="zm-default-layout">
+            
+<div ng-include="layoutSrc" id="include" class="ng-cloak">
+    <div class="row-fluid">
+        <div class="col-md-12">
+            <div class="col-middle">
+                <div class="text-center js-show-delayed-5s">
+                    <h1 class="text-danger">Es ist ein Fehler aufgetreten!</h1>
+                    <h2>Bitte aktiviere Javascript und Cookies für diese Domain</h2>
+                    <p class="mb-sm">
+                        Diese Webseite benötigt Scripte und Funktionen, die jedoch von deinem Browser blockiert werden!<br/>
+                        <strong>Bitte aktiviere Javascript und Cookies für diese Domain um die Account Verwaltung nutzen zu können.</strong>
+                    </p>
+                    <p>
+                        <a href class="text-light">Wie geht das?</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+
+
+        <!-- NG TEMPLATES -->
+        <script type="text/ng-template" id="warning-dialog.html">
+            <div class="modal-header">
+                <h4 class="modal-title cg-red-text" translate="timedout.title">You are Idle!</h4>
+            </div>
+            <div idle-countdown="countdown" class="modal-body p-lg">
+                <div class="text-center mb-md">
+<!--                    <img src="https://account.zenmate.com/assets/img/lo/cg_ghostie_doomsday.png">-->
+                </div>
+                <uib-progressbar max="20" value="countdown" animate="false" class=""></uib-progressbar>
+                <div class="text-light text-center mb-md mt-md" translate="timedout.message" translate-interpolation="messageformat" translate-values="{ countdown: +countdown }">You'll be logged out in {{countdown}} second(s).</div>
+            </div>
+        </div>
+        <div type="text/ng-template" id="app/modules/login/modal/migrate.tpl.html"><div class="modal-header">
+  <h4 class="modal-title cg-darkgray-text">
+    <span > Welcome to ZenMate!</span><br>
+  </h4>
+
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+  <p>Glad to see you updated to our latest client!</p>
+  <p>Keep your digital life fully protected and switch to {appName} on all your other devices as well.</p>
+  <p>Your credentials no longer work with older versions of our product!</p>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons">
+    <button type="button" class="zm-btn small green mr-sm" ng-click="showMigrateUserModalCtrl.save(true)" > Got it!</button>
+  </div>
+</div></script>
+
+<nav role="navigation" class="navbar zm-website-header is-responsive">
+
+  <!-- Title -->
+  <div class="zm-website-header-inner">
+    <div class="zm-logo">
+      <a href="/" class="">
+        <img src="index_files/zm_logo.svg" alt="Zenmate">
+      </a>
+    </div>
+
+    <div class="navbar-header ml-auto my-auto">
+      <ul class="nav language-select">
+        <li class="dropdown pull-right">
+          <a href="" data-toggle="dropdown" class="dropdown-toggle">
+            <img class="country-flag" alt="us" ng-src="index_files/us.png" src="index_files/us.png">
+          </a>
+          <ul class="dropdown-menu">
+            <!----><li ng-repeat="language in headerCtrl.languages" class="dropdown-item active" ng-class="{active: headerCtrl.isCurrentLocale(language.locale)}">
+              <a href="" ng-click="headerCtrl.setCurrentLocale(language.locale)">
+                <img class="country-flag mr-sm" ng-src="index_files/us.png" alt="us" src="index_files/us.png">
+                <span>United States</span>
+              </a>
+            </li><!----><li ng-repeat="language in headerCtrl.languages" class="dropdown-item" ng-class="{active: headerCtrl.isCurrentLocale(language.locale)}">
+              <a href="" ng-click="headerCtrl.setCurrentLocale(language.locale)">
+                <img class="country-flag mr-sm" ng-src="index_files/de.png" alt="de" src="index_files/de.png">
+                <span>Germany</span>
+              </a>
+            </li><!----><li ng-repeat="language in headerCtrl.languages" class="dropdown-item" ng-class="{active: headerCtrl.isCurrentLocale(language.locale)}">
+              <a href="" ng-click="headerCtrl.setCurrentLocale(language.locale)">
+                <img class="country-flag mr-sm" ng-src="index_files/fr.png" alt="fr" src="index_files/fr.png">
+                <span>France</span>
+              </a>
+            </li><!----><li ng-repeat="language in headerCtrl.languages" class="dropdown-item" ng-class="{active: headerCtrl.isCurrentLocale(language.locale)}">
+              <a href="" ng-click="headerCtrl.setCurrentLocale(language.locale)">
+                <img class="country-flag mr-sm" ng-src="index_files/ru.png" alt="ru" src="index_files/ru.png">
+                <span>Russia</span>
+              </a>
+            </li><!----><li ng-repeat="language in headerCtrl.languages" class="dropdown-item" ng-class="{active: headerCtrl.isCurrentLocale(language.locale)}">
+              <a href="" ng-click="headerCtrl.setCurrentLocale(language.locale)">
+                <img class="country-flag mr-sm" ng-src="index_files/es.png" alt="es" src="index_files/es.png">
+                <span>Spain</span>
+              </a>
+            </li><!----><li ng-repeat="language in headerCtrl.languages" class="dropdown-item" ng-class="{active: headerCtrl.isCurrentLocale(language.locale)}">
+              <a href="" ng-click="headerCtrl.setCurrentLocale(language.locale)">
+                <img class="country-flag mr-sm" ng-src="index_files/kr.png" alt="kr" src="index_files/kr.png">
+                <span>Korean</span>
+              </a>
+            </li><!----><li ng-repeat="language in headerCtrl.languages" class="dropdown-item" ng-class="{active: headerCtrl.isCurrentLocale(language.locale)}">
+              <a href="" ng-click="headerCtrl.setCurrentLocale(language.locale)">
+                <img class="country-flag mr-sm" ng-src="index_files/tr.png" alt="tr" src="index_files/tr.png">
+                <span>Turkey</span>
+              </a>
+            </li><!----><!-- <li role="separator" class="divider"></li>
+          <li><a href="#">World</a></li> -->
+          </ul>
+        </li>
+
+      </ul>
+      <!-- Required bootstrap placeholder for the collapsed menu -->
+    </div>
+    <!---->
+  </div>
+
+
+
+  <!-- Additional navbar items -->
+  <div class="collapse navbar-collapse" id="navbar-menu" ng-class="{in: !headerCtrl.navCollapsed}">
+    <ul class="navbar-nav mr-auto">
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+    </ul>
+  </div>
+
+</nav>
+
+<div type="text/ng-template" id="app/modules/login/login.tpl.html"><section class="auth-page">
+  <div class="auth-switch">
+    <div class="button-row"><button translate="login.title">Log In</button><button ui-sref="app.signup.create" translate="signup.title">Sign Up</button></div>
+    <div class="slider-line">
+      <div class="slider login"></div>
+    </div>
+  </div>
+
+  <div class="auth-container">
+    <form class="form login-form" method="post" name="loginForm" block-ui="loginForm" action="login.php">
+      <div class="messages">
+
+        <div class="mb-5">
+          <h4 translate="login.warning.migrate.title">Welcome back!</h4>
+          <p translate="login.warning.migrate.p1">You are about to get the latest version of ZenMate!</p>
+          <p translate="login.warning.migrate.p2">Keep in mind that you won’t be able to use the previous iterations of our product anymore.</p>
+        </div>
+      </div>
+
+      <!-- <input class="text-box disabled" type="text" name="name" value="" placeholder="Email" disabled="disabled"> -->
+      <label for="username">
+        <p class="label" translate='login.label.username'>Email</p>
+        <input class="text-box" type="text" name="username" value="" id="email" required="required" ng-model="loginCtrl.data.username">
+      </label>
+      <label for="password">
+        <p class="label" translate="login.label.password">Password</p>
+        <input class="text-box" type="password" name="password" id="pass" value="" required="required" ng-model="loginCtrl.data.password">
+      </label>
+      <div vc-recaptcha key="loginCtrl.recaptcha.key" theme="light" on-success="loginCtrl.recaptcha.onSuccess(response)"></div>
+
+      <button type="submit" ng-disabled="!loginCtrl.isValid(loginCtrl.data)" class="button-secondary-default block" ng-click="loginCtrl.login(loginCtrl.data)" translate="login.button.login">Log In</button>
+
+
+      <div class="bottom-links mt-lg">
+        <div class="text-center">
+          <a class="link-sep text-center" ui-sref="app.recover.email" translate="login.link.recover" href="index.html">Oops, I forgot my password!</a>
+
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+</section></div><script type="text/ng-template" id="app/modules/devices/devices.tpl.html"><div class="zm-subheader">
+  <h2 class="zm-subheader-title" translate="devices.title">My Device</h2>
+  <!--<span class="pull-right"><a href class="btn btn-default hvr-icon-rotate" ng-click="subscriptionsListCtrl.refresh()" ng-disabled="deviceAddModalCtrl.isRefreshing"><i class="fa fa-refresh hvr-icon"></i> Refresh</a> </span>-->
+</div>
+<div class="zm-default-container">
+  <div class="section-content" ng-if="!devicesCtrl.error">
+    <p class="descriptive mb-lg">
+      <span class="text-light ng-cloak" translate="devices.registered_devices" translate-interpolation="messageformat" translate-values="{ current: +devicesCtrl.devices.length, max: +account.getActivePlan().maxDevices }">You have 1 registered device out of 1 slot.</span><br>
+      <!--<a href ui-sref="app.devices.add" ng-click="devicesCtrl.showDeviceAddModal()" ng-if="+devicesCtrl.devices.length<+account.getActivePlan().maxDevices" translate="devices.link.add_new_device">Add a new device</a>-->
+    </p>
+    <div class="registered-devices">
+      <div class="devices-list">
+        <div class="upgrade-infos" ng-if="account.isUpgradable() && !account.getActivePlan().maxDevices>1">
+          <p class="text-description" translate="devices.upgrade_text">
+            You can add more devices with our <strong>Premium Plus</strong> service.
+          </p>
+          <a href ui-sref="app.upgrades" class="zm-btn small green text-center m-none action-upgrade" translate="devices.button.upgrade">Upgrade</a>
+        </div>
+        <div class="row zm-table-list-top py-3" ng-if="devicesCtrl.slots.length>0" >
+          <div class="col-md-2 col-sm-2 text-center" translate="devices.added_devices.label.device_platform">Platfrom</div>
+          <div class="col-md-4 col-sm-4 text-center" translate="devices.added_devices.label.device_name">Device name</div>
+          <div class="col-md-3 col-sm-2 text-center" translate="devices.added_devices.label.device_added_on">Date Added</div>
+          <div class="col-md-3 col-sm-4"></div>
+        </div>
+        <div ng-repeat="slot in devicesCtrl.slots track by $index" class="device-slot" ng-class="{'empty-slot': !slot.device}">
+          <div class="row zm-table-list-item py-3" ng-if="slot.device">
+            <div class="col-md-2 col-sm-2 platform-device">
+              <div class="platform my-auto"><div class="{{devicesCtrl.getDevicePlatform(slot.device)}} available"></div></div>
+            </div>
+            <div class="col-md-4 col-sm-4 my-auto">
+              <span ng-if="!slot.device.name.length" title="{{slot.device.oauthConsumers.appName}}">{{devicesCtrl.cleanCode(slot.device.oauthConsumers.appName)}}</span>
+              <span ng-if="slot.device.name.length" title="{{slot.device.name}}" ng-bind-html="slot.device.name"></span>
+            </div>
+            <div class="col-md-3 col-sm-2 my-auto">{{slot.device.createdAt | amDateFormat:'LL'}}</div>
+            <div class="col-md-3 col-sm-4 my-auto list-devices-actions">
+              <a href class="zm-btn small cg-darkgray m-none mr-2 mt-sm mb-sm" ng-if="slot.device && devicesCtrl.getDevicePlatform(slot.device)==='linux'" ui-sref="app.devices.edit({deviceId: slot.device.id})" ng-click="devicesCtrl.showDeviceSettingsModal(slot.device)" translate="devices.added_devices.button.edit">Edit</a>
+              <a href class="zm-btn small red m-none my-2 mt-sm mb-sm" ng-click="devicesCtrl.openRemoveModal(slot.device)" >X</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div ng-if="devicesCtrl.slots.length==0">
+          <p translate="devices.add_first">Add your first device</p>
+        </div>
+        <div class="available-for"><div class="zm-label" translate="devices.available_for">Available for</div>
+          <div class="row">
+            <div class="platforms col-12 col-sm-6 p-0 mt-2">
+              <div class="platform">
+                <a ng-href="{{devicesCtrl.getDownloadUrl('firefox')}}" target="_blank">
+                  <div class="firefox available"></div>
+                </a>
+              </div>
+              <div class="platform">
+                <a ng-href="{{devicesCtrl.getDownloadUrl('chrome')}}" target="_blank">
+                  <div class="chrome available" ></div>
+                </a>
+              </div>
+              <div class="platform">
+                <a ng-href="{{devicesCtrl.getDownloadUrl('opera')}}" target="_blank">
+                  <div class="opera available"></div>
+                </a>
+              </div>
+              <div class="platform">
+                <a ng-href="{{devicesCtrl.getDownloadUrl('windows')}}" target="_blank">
+                  <div class="windows" ng-class="{'available': account.isPremium()}"></div>
+                </a>
+              </div>
+            </div>
+            <div class="platforms col-12 col-sm-6 p-0 mt-2">
+              <div class="platform">
+                <a ng-href="{{devicesCtrl.getDownloadUrl('macos')}}" target="_blank">
+                  <div class="macos" ng-class="{'available': account.isPremium()}"></div>
+                </a>
+              </div>
+              <div class="platform">
+                <a href ng-href="{{devicesCtrl.getDownloadUrl('ios')}}" target="_blank">
+                  <div class="ios" ng-class="{'available': account.isPremium()}"></div>
+                </a>
+              </div>
+              <div class="platform">
+                <a href ng-href="{{devicesCtrl.getDownloadUrl('android')}}" target="_blank">
+                  <div class="android" ng-class="{'available': account.isPremium()}"></div>
+                </a>
+              </div>
+              <div class="platform">
+                <a href ui-sref="app.devices.create({ os: 'custom' })" ng-click="devicesCtrl.osSelection='custom'" ng-if="account.isPremium()">
+                  <div class="linux" ng-class="{'available': account.isPremium()}"></div>
+                </a>
+                <a href ng-href="{{devicesCtrl.getDownloadUrl('custom')}}" target="_blank" ng-if="!account.isPremium()">
+                  <div class="linux" ng-class="{'available': account.isPremium()}"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div> <!-- / section-content -->
+
+  <div ng-if="devicesCtrl.error">
+    <div class="mt-lg text-bold text-center" translate="errors.server_error">
+      An error occured.
+    </div>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/devices/modal/add-firetv.tpl.html"><div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">×</span></button>
+  <h4 class="modal-title cg-darkgray-text">
+    <span translate="devices.add_firetv.title">Installation guide for Amazon Fire TV</span><br>
+  </h4>
+  <div class="device-os-icon">
+    <i class="os-icon os-icon-lg os-icon-others"></i>
+  </div>
+</div>
+<div class="modal-body">
+
+
+  <p class="mt-sm">1. <span class="text-bold" translate="devices.add_firetv.step1.title">Download the app on your Amazon Fire TV</span></p>
+  <p translate="devices.add_firetv.step1.description">Search for Zenmate in the Amazon Appstore and download it on to your TV.</p>
+  <p class="mt-sm">2. <span class="text-bold" translate="devices.add_firetv.step2.title">Sign into your account</span></p>
+  <p translate="devices.add_firetv.step2.description">Create a new account if you’re a first-time user or log into your existing ZenMate account.</p>
+  <p class="mt-sm">3. <span class="text-bold" translate="devices.add_firetv.step3.title">Connect to Zenmate VPN</span></p>
+  <p translate="devices.add_firetv.step3.description">Click the Connect button or pick your favorite server to stream fast and securely.</p>
+
+
+</div>
+<div class="modal-footer">
+
+</div></script><script type="text/ng-template" id="app/modules/devices/modal/remove.tpl.html"><div class="modal-header">
+
+  <h4 class="modal-title cg-darkgray-text" translate="devices.remove.title">Remove Device</h4>
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+  <p class="cg-red-text text-center" translate="devices.remove.label.confirmation">
+    Please confirm the removal of the device.
+  </p>
+  <p class="text-light text-center">
+    <i class="fa fa-exclamation-triangle"></i> <small translate="devices.remove.label.disconnected">The device will get disconnected.</small>
+  </p>
+  <div class="mt-md text-center">
+    <p class="checkbox">
+      <label for="deleteConfirm">
+        <input type="checkbox" id="deleteConfirm" value="1" ng-model="deviceRemoveModalCtrl.data.confirmation"> <span translate="devices.remove.label.agree">Yes, permanently delete this device.</span>
+      </label>
+    </p>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons">
+    <button type="button" class="zm-btn red mr-sm" ng-disabled="!deviceRemoveModalCtrl.data.confirmation" ng-click="deviceRemoveModalCtrl.remove(deviceRemoveModalCtrl.device)" translate="devices.remove.button.remove">Yes, please remove the device</button>
+    <button type="button" class="zm-btn small" ng-click="deviceRemoveModalCtrl.close()" translate="devices.remove.button.cancel">Cancel</button>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/devices/modal/edit.tpl.html"><div class="modal-header">
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title cg-darkgray-text" translate="devices.settings.title">Device Settings</h4>
+  <div class="device-os-icon">
+    <i class="os-icon os-icon-lg os-icon-{{deviceSettingsModalCtrl.getDevicePlatform(deviceSettingsModalCtrl.device)}}"></i>
+  </div>
+</div>
+<div class="modal-body">
+  <form name="FormDeviceSettings">
+    <div class="row mb-md">
+      <div class="col-xs-12 col-sm-6">
+        <label translate="devices.settings.label.device_type">Device type</label><br>
+        <span>{{deviceSettingsModalCtrl.getDevicePlatformName(deviceSettingsModalCtrl.device)}}</span>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <label translate="devices.settings.label.device_added">Device Added</label><br>
+        <span title="{{deviceSettingsModalCtrl.device.createdAt | amDateFormat:'LLLL'}}">{{deviceSettingsModalCtrl.device.createdAt | amDateFormat:'L HH:mm:ss'}}</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="deviceName" translate="devices.settings.label.device_name">Device Name</label>
+      <input type="text" class="cg-textfield cg-textfield-sm no-margin-left" id="deviceName" ng-model="deviceSettingsModalCtrl.device.name">
+    </div>
+  </form>
+  <div style="width: 80%; margin: auto;">
+    <a href ng-href="{{deviceSettingsModalCtrl.getDownloadUrl(deviceSettingsModalCtrl.getDevicePlatform(deviceSettingsModalCtrl.device))}}" class="zm-btn small cg-blue btn-block mb-md m-none hvr-icon-down" target="_blank" ng-if="deviceSettingsModalCtrl.getDevicePlatform(deviceSettingsModalCtrl.device) && deviceSettingsModalCtrl.getDevicePlatform(deviceSettingsModalCtrl.device)!=='ios' && deviceSettingsModalCtrl.getDevicePlatform(deviceSettingsModalCtrl.device)!=='android' && deviceSettingsModalCtrl.getDevicePlatform(deviceSettingsModalCtrl.device)!=='custom'"><i class="fa fa-download hvr-icon"></i> <span translate="devices.add.button.download">Download our client</span></a>
+    <div class="text-center pl-lg pr-lg" ng-if="deviceSettingsModalCtrl.getDevicePlatform(deviceSettingsModalCtrl.device)=='android' || deviceSettingsModalCtrl.getDevicePlatform(deviceSettingsModalCtrl.device)=='ios'">
+
+      <a href cg-href="{{deviceSettingsModalCtrl.getDownloadUrl(deviceSettingsModalCtrl.getDevicePlatform(deviceSettingsModalCtrl.device))}}" class="display-inline-block appstore-icon">
+        <img src ng-src="{{'/assets/img/'+(deviceSettingsModalCtrl.getDevicePlatform(deviceSettingsModalCtrl.device)=='ios'?'apple_app_store':'google_play_store')+'/png/'+currentLanguage+'.png'}}" alt="Apple AppStore" class="img-responsive">
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <div class="container-buttons">
+    <a href class="zm-btn small red pull-left m-none mb-sm" style="min-width: 180px;" ui-sref="app.devices.remove({deviceId: deviceSettingsModalCtrl.device.id})" ng-click="deviceSettingsModalCtrl.showDeviceRemoveModal(deviceSettingsModalCtrl.device)" translate="devices.settings.button.remove">Remove Device</a>
+    <button type="button" class="zm-btn small green m-none mb-sm" ng-disabled="!FormDeviceSettings.$dirty" ng-click="deviceSettingsModalCtrl.save(deviceSettingsModalCtrl.device)" translate="devices.settings.button.save">Save</button>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/devices/modal/add-other.tpl.html"><div class="modal-header">
+
+  <h4 class="modal-title cg-darkgray-text">
+    <span translate="devices.settings.other.create">Create New Device Credentials</span><br>
+    <span class="subtitle" translate="devices.settings.other.subtitle">
+      For Linux, routers and other devices.
+    </span>
+  </h4>
+  <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">×</span></button>
+</div>
+<div class="modal-body">
+  <p class="text-center mb-md">
+    <i class="os-icon os-icon-md os-icon-other"></i>
+  </p>
+  <p translate="devices.settings.other.description" class="">
+    In order to use Zenmate on your router, on Linux or on any other device for which we don't offer an app,
+    you'll need to create a set of login credentials and enter those manually.
+  </p>
+  <p class="text-center mt-md">
+    <a href cg-href="go_installation_help" target="_blank"><span translate="devices.settings.other.link.howto">Learn how to setup a VPN connection manually</span></a>
+  </p>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons">
+    <button type="button" class="zm-btn small blue mr-sm"
+        ng-click="deviceAddOtherModalCtrl.create()"
+        ng-disabled="deviceAddOtherModalCtrl.account.getActivePlan().maxDevices === deviceAddOtherModalCtrl.account.getData().deviceCount"
+        translate="devices.settings.other.button.create">Create</button>
+    <button type="button" class="zm-btn small" ng-click="deviceAddOtherModalCtrl.close()" translate="devices.settings.other.button.cancel">Cancel</button>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/devices/modal/add.tpl.html"><div class="modal-header">
+
+  <h4 class="modal-title cg-darkgray-text">
+    <span class="display-block" translate="devices.add.title" ng-hide="deviceAddModalCtrl.osSelection">Add a New Device</span>
+    <span class="display-block" translate="devices.add.title" ng-show="deviceAddModalCtrl.osSelection">Add a New Device</span>
+    <span class="subtitle subtitle-device" translate="devices.add.subtitle">Download client or create credentials</span>
+  </h4>
+
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+
+</div>
+<div class="modal-body text-center">
+  <div class=row">
+    <div style="width: 80%; margin: auto;">
+      <!--<a href ui-sref="app.devices" class="zm-btn small cg-darkgray mb-md m-none btn-block visible-xs" ng-show="deviceAddModalCtrl.osSelection"><img src="/assets/img/icons/arrow-back-128.png" width="32" height="32"></a>-->
+      <a href ng-href="{{deviceAddModalCtrl.getDownloadUrl(deviceAddModalCtrl.osSelection)}}" class="zm-btn small blue btn-block mb-md m-none hvr-icon-down" target="_blank" ng-if="deviceAddModalCtrl.osSelection && deviceAddModalCtrl.osSelection!=='ios' && deviceAddModalCtrl.osSelection!=='android' && deviceAddModalCtrl.osSelection!=='custom' && deviceAddModalCtrl.osSelection!=='fireTv'"><i class="fa fa-download hvr-icon"></i> <span translate="devices.add.button.download">Download our client</span></a>
+      <a href ng-click="deviceAddModalCtrl.showDeviceAddOtherModal()" class="zm-btn blue btn-block m-none hvr-icon-rotate" ng-if="deviceAddModalCtrl.osSelection && deviceAddModalCtrl.osSelection==='custom'"><i class="fa fa-wrench hvr-icon mr-2"></i> <span translate="devices.add.login_credentials">Create login credentials</span></a>
+      <a href ng-click="deviceAddModalCtrl.showDeviceAddFiretvModal()" class="zm-btn blue btn-block m-none hvr-icon-rotate" ng-if="deviceAddModalCtrl.osSelection && deviceAddModalCtrl.osSelection==='fireTv'" translate="devices.add_firetv.title">Installation guide for Amazon Fire TV</a>
+    </div>
+  </div>
+  <div id="overview" class="pt-lg pb-lg" ng-show="!deviceAddModalCtrl.osSelection">
+    <div class="download-links">
+      <div class="download-link animated fadeIn hvr-float">
+        <a href ui-sref="app.devices.create({ os: 'windows' })" ng-click="deviceAddModalCtrl.osSelection='windows'">
+          <i class="os-icon os-icon-md os-icon-windows"></i>
+          <span>Windows</span>
+        </a>
+      </div>
+      <div class="download-link animated fadeIn hvr-float">
+        <a href ui-sref="app.devices.create({ os: 'macos' })" ng-click="deviceAddModalCtrl.osSelection='macos'">
+          <i class="os-icon os-icon-md os-icon-macos"></i>
+          <span>macOS</span>
+        </a>
+      </div>
+      <div class="download-link animated fadeIn hvr-float">
+        <a href ui-sref="app.devices.create({ os: 'ios' })" ng-click="deviceAddModalCtrl.osSelection='ios'">
+          <i class="os-icon os-icon-md os-icon-ios"></i>
+          <span>iOS</span>
+        </a>
+      </div>
+      <div class="download-link animated fadeIn hvr-float">
+        <a href ui-sref="app.devices.create({ os: 'android' })" ng-click="deviceAddModalCtrl.osSelection='android'">
+          <i class="os-icon os-icon-md os-icon-android"></i>
+          <span>Android</span>
+        </a>
+      </div>
+      <div class="download-link animated fadeIn hvr-float">
+        <a href ui-sref="app.devices.create({ os: 'custom' })" ng-click="deviceAddModalCtrl.osSelection='custom'">
+          <i class="os-icon os-icon-md os-icon-custom"></i>
+          <span>Others</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <style type="text/css">
+    .instructions-container {
+      position: relative;
+      overflow: hidden;
+      padding: 20px 60px 90px 60px;
+      background-size: contain;
+      background-clip: padding-box;
+      background-repeat: no-repeat;
+      background-position: center;
+      /*background: url('/assets/img/instructions/windows/screen_bg.png') no-repeat center center;*/
+    }
+    .instructions-windows .instructions-container {
+      padding: 20px 60px 90px 60px;
+      background-image: url('/assets/img/instructions/windows/screen_bg.png');
+    }
+    .instructions-macos .instructions-container {
+      padding: 25px 55px 90px 60px;
+      background-image: url('/assets/img/instructions/macos/screen_bg.png');
+    }
+    .instructions-ios .instructions-container {
+      padding: 110px 70px 110px 70px;
+      background-image: url('/assets/img/instructions/ios/screen_bg.png');
+    }
+    .instructions-ios .instructions-container img {
+      width: 240px;
+    }
+    .instructions-android .instructions-container {
+      padding: 110px 70px 110px 70px;
+      background-image: url('/assets/img/instructions/android/screen_bg.png');
+    }
+    .instructions-android .instructions-container img {
+      width: 240px;
+    }
+    .instructions-custom .instructions-container {
+      padding: 20px 60px 90px 60px;
+      background-image: none;
+    }
+
+    .slick-slider.slick-dotted .slick-dots li button:before {
+      color: white;
+    }
+    .slick-slider.slick-dotted .slick-dots li.slick-active button:before {
+      color: white;
+    }
+
+    .appstore-icon {
+      max-width: 240px;
+    }
+
+    @media (max-width: 692px) {
+      .instructions-container {
+        padding: 0!important;
+        background-image: none!important;
+      }
+      .slick-slider.slick-dotted .slick-dots li button:before {
+        color: black;
+      }
+      .slick-slider.slick-dotted .slick-dots li.slick-active button:before {
+        color: black;
+      }
+      .slick-slider .slick-prev:before,
+      .slick-slider .slick-next:before {
+        color: black;
+      }
+    }
+  </style>
+  <div id="instructions" ng-show="deviceAddModalCtrl.osSelection">
+    <div class="content">
+      <div ng-switch="deviceAddModalCtrl.osSelection">
+        <img ng-switch-when="ios" src="/assets/img/instructions/ios/iOS.png" class="img-responsive">
+        <img ng-switch-when="android" src="/assets/img/instructions/android/android.png" class="img-responsive">
+        <img ng-switch-when="windows" src="/assets/img/instructions/windows/win.png" class="img-responsive">
+        <img ng-switch-when="fireTv" src="/assets/img/instructions/fire-tv/tv-ultimate-streaming@2x.png" class="img-responsive">
+        <img ng-switch-when="chrome" src="/assets/img/instructions/chrome/cg-chrome.png" class="img-responsive">
+        <img ng-switch-when="custom" src="/assets/img/instructions/other/others.png" class="img-responsive">
+        <img ng-switch-default src="/assets/img/instructions/macos/mac.png" class="img-responsive">
+      </div>
+
+      <div class="text-center pl-lg pr-lg" ng-if="deviceAddModalCtrl.osSelection=='android' || deviceAddModalCtrl.osSelection=='ios'">
+        <a href cg-href="{{deviceAddModalCtrl.getDownloadUrl(deviceAddModalCtrl.osSelection)}}" class="display-inline-block appstore-icon" target="_blank">
+          <img src ng-src="{{'/assets/img/'+(deviceAddModalCtrl.osSelection=='ios'?'apple_app_store':'google_play_store')+'/png/'+currentLanguage+'.png'}}" alt="Apple AppStore" class="img-responsive">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer text-center">
+  <div class="container-buttons clearfix">
+    <a href ng-href="{{deviceAddModalCtrl.getDetailsUrl(deviceAddModalCtrl.osSelection)}}" class="zm-btn cg-darkgray m-none mb-sm pull-left hvr-icon-grow" target="_blank"><i class="fa fa-external-link hvr-icon mr-2"></i> <span translate="devices.view_on_website" translate-interpolation="messageformat" translate-values="{ website: 'Zenmate.com' }">More details</span></a>
+    <a href ng-click="$dismiss()" class="zm-btn small cg-darkgray mb-sm ml-2" translate="devices.add.button.close">Close</a>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/devices/modal/edit-other.tpl.html"><div class="modal-header">
+  <h4 class="modal-title cg-darkgray-text" translate="devices.settings.other.title">Device Other Settings</h4>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="$dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body w-100">
+  <style type="text/css">
+    @media screen and (min-width: 991px) {
+
+      .tabs {
+        width: 80%;
+        margin: auto;
+      }
+    }
+    .tabs .nav.nav-tabs {}
+    .tabs .tab-content {}
+    .tabs .tab-content form { width: 100%; }
+  </style>
+  <div class="tabs">
+
+
+
+    <div class="tab-pane active" id="tab-connection-settings">
+
+        <style type="text/css">
+          .form-configuration {}
+          .form-configuration .info-table {}
+          .form-configuration .info-table .actions {
+            text-align: right;
+            width: 320px;
+          }
+        </style>
+        <form name="FormConnectionSettings" class="form-configuration">
+          <div class="table-responsive" style="overflow-x: visible">
+            <!--<pre>-->
+              <!--{{deviceSettingsOtherModalCtrl.selectedFeatures | json}}-->
+            <!--</pre>-->
+            <table class="info-table device-settings animated fadeIn">
+              <tbody>
+              <tr>
+                <td translate="devices.settings.other.label.server">Server</td>
+                <td class="overflow pr-none">
+                  <span ng-show="deviceSettingsOtherModalCtrl.configuration.servergroup">{{deviceSettingsOtherModalCtrl.configuration.servergroup.dnsName}}</span>
+                  <span ng-hide="deviceSettingsOtherModalCtrl.configuration.servergroup" translate="devices.settings.other.label.selection_missing" title="{{'devices.settings.other.label.selection_missing' | translate}}">Select country and servergroup</span>
+                </td>
+              </tr>
+              <tr>
+                <td translate="devices.settings.other.label.username">Username</td>
+                <td class="overflow pr-none"><span>{{deviceSettingsOtherModalCtrl.credentials.username}}</span></td>
+              </tr>
+              <tr>
+                <td translate="devices.settings.other.label.password">Password</td>
+                <td class="overflow pr-none">
+                  <password data="deviceSettingsOtherModalCtrl.credentials.password" decrypt="deviceSettingsOtherModalCtrl.credentials.decrypt"></password>
+                </td>
+              </tr>
+              <tr>
+                <td class="overflow pr-none" colspan="2">
+                  <div class="checkbox m-none">
+                    <label><input ng-click="deviceSettingsOtherModalCtrl.credentials.decrypt=!deviceSettingsOtherModalCtrl.credentials.decrypt" type="checkbox" translate="devices.settings.other.label.show_password">Show Password</label>
+                  </div>
+                </td>
+              </tr>
+              <tr ng-show="(deviceSettingsOtherModalCtrl.configuration.protocol.type !== 'openvpn' && deviceSettingsOtherModalCtrl.configuration.protocol.type !== 'ikev2' && deviceSettingsOtherModalCtrl.configuration.protocol.type.length>0 )">
+                <td translate="devices.settings.other.label.pre_shared">Pre-shared </td>
+                <td class="overflow pr-none">
+                  <span >{{deviceSettingsOtherModalCtrl.configuration.preShared}}</span>
+                </td>
+              </tr>
+              <tr class="no-border">
+                <td translate="devices.settings.other.label.protocol">Protocol</td>
+                <td>
+                  <ui-select ng-model="deviceSettingsOtherModalCtrl.configuration.protocol" ng-disabled="deviceSettingsOtherModalCtrl.countries.length === 0" search-enabled="false" ng-change="deviceSettingsOtherModalCtrl.selectProtocol()" theme="selectize" append-to-body="true" title="{{'devices.settings.other.label.protocol' | translate}}">
+                    <ui-select-match placeholder="{{'devices.settings.other.label.choose_protocol' | translate}}">
+                      <div>
+                        <img ng-if="$select.selected.countrycode!==''" ng-src="https://account.zenmate.com/assets/img/flags/16/{{$select.selected.countrycode%20|%20lowercase}}.png"> <span ng-bind-html="$select.selected.name | highlight: $select.search"></span>
+                      </div>
+                    </ui-select-match>
+                    <ui-select-choices repeat="protocol in deviceSettingsOtherModalCtrl.protocols | filter: $select.search">
+                      <div>
+                         <span ng-bind-html="protocol.name | highlight: $select.search"></span>
+                      </div>
+                    </ui-select-choices>
+                  </ui-select>
+                </td>
+              </tr>
+              <tr class="no-border">
+                <td translate="devices.settings.other.label.country">Country</td>
+                <td>
+                  <ui-select ng-model="deviceSettingsOtherModalCtrl.configuration.country" ng-disabled="deviceSettingsOtherModalCtrl.countries.length === 0" theme="selectize" append-to-body="true" title="{{'devices.settings.other.label.choose_country' | translate}}" search-enabled="false">
+                    <ui-select-match placeholder="{{'devices.settings.other.label.choose_country' | translate}}">
+                      <div>
+                        <img ng-if="$select.selected.countrycode!==''" ng-src="https://account.zenmate.com/assets/img/flags/16/{{$select.selected.countrycode%20|%20lowercase}}.png"> <span ng-bind-html="$select.selected.name | highlight: $select.search"></span>
+                      </div>
+                    </ui-select-match>
+                    <ui-select-choices repeat="country in deviceSettingsOtherModalCtrl.countries | filter: $select.search">
+                      <div>
+                        <img ng-if="country.countrycode!==''" ng-src="https://account.zenmate.com/assets/img/flags/16/{{country.countrycode%20|%20lowercase}}.png"> <span ng-bind-html="country.name | highlight: $select.search"></span>
+                      </div>
+                    </ui-select-choices>
+                  </ui-select>
+                </td>
+              </tr>
+              <tr class="no-border">
+                <td translate="devices.settings.other.label.servergroup">Servergroup</td>
+                <td class="">
+                  <ui-select ng-model="deviceSettingsOtherModalCtrl.configuration.servergroup" ng-disabled="deviceSettingsOtherModalCtrl.servergroups.length === 0" theme="selectize" search-enabled="false" append-to-body="true" title="{{'devices.settings.other.label.choose_servergroup' | translate}}">
+                    <ui-select-match placeholder="{{'devices.settings.other.label.choose_servergroup' | translate}}">
+                      <div>
+                        <div ng-bind-html="$select.selected.name | highlight: $select.search"></div>
+                        <small ng-bind-html="$select.selected.dnsName | highlight: $select.search"></small>
+                      </div>
+                    </ui-select-match>
+                    <ui-select-choices repeat="servergroup in deviceSettingsOtherModalCtrl.servergroups | filter: $select.search">
+                      <div>
+                        <div class="text-bold" ng-bind-html="servergroup.name | highlight: $select.search"></div>
+                        <small ng-bind-html="servergroup.dnsName | highlight: $select.search"></small>
+                      </div>
+                    </ui-select-choices>
+                  </ui-select>
+                </td>
+              </tr>
+
+              <!-- <tr ng-show="(deviceSettingsOtherModalCtrl.configuration.protocol.type !== 'openvpn' && deviceSettingsOtherModalCtrl.configuration.protocol.type.length>0)">
+                <td translate="devices.settings.other.label.secret">Secret</td>
+                <td class="overflow pr-none">
+                  <span>{{deviceSettingsOtherModalCtrl.configuration.secret}}</span>
+                </td>
+              </tr>
+              <tr ng-show="(deviceSettingsOtherModalCtrl.configuration.protocol.type !== 'openvpn' && deviceSettingsOtherModalCtrl.configuration.protocol.type.length>0)">
+              <td translate="devices.settings.other.label.device_id">Device ID</td>
+                <td class="overflow pr-none">
+                  <span>{{deviceSettingsOtherModalCtrl.device.id}}</span>
+                </td>
+              </tr>-->
+              <tr ng-hide="!deviceSettingsOtherModalCtrl.configuration.valid">
+                <td class="overflow pr-none" colspan="2">
+                  <i class="fa fa-file-text-o"></i>
+                  <a href ng-click="deviceSettingsOtherModalCtrl.saveCredentials(deviceSettingsOtherModalCtrl.configuration.servergroup)">
+                    <span translate="devices.settings.other.link.save_credentials">Save credentials as textfile</span>
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-center mt-md">
+            <a href cg-href="go_installation_help" target="_blank"><span translate="devices.settings.other.link.howto">Learn how to setup a VPN connection manually.</span></a>
+          </p>
+          <div class="text-center mt-lg" ng-show="(deviceSettingsOtherModalCtrl.configuration.protocol.type === 'openvpn')">
+            <p><img src="/assets/img/logos/openvpn_logo.png" title="OpenVPN" class="img-responsive"></p>
+            <p class="text-truncate">
+              <span ng-hide="deviceSettingsOtherModalCtrl.configuration.servergroup" translate="devices.settings.other.label.selection_missing" title="{{'devices.settings.other.label.selection_missing' | translate}}">Select country and servergroup</span>
+              <span ng-show="deviceSettingsOtherModalCtrl.configuration.servergroup" translate="devices.settings.other.label.download_info" title="{{'devices.settings.other.label.download_info' | translate}}">Download a ZIP-Archive with the configuration and certificate files.</span>
+            </p>
+            <p><button type="button" class="zm-btn blue middle text-truncate m-none mb-sm" ng-disabled="!deviceSettingsOtherModalCtrl.configuration.valid" ng-click="deviceSettingsOtherModalCtrl.downloadConfiguration(deviceSettingsOtherModalCtrl.configuration)" translate="devices.settings.other.button.download_configuration">Download OpenVPN Configuration</button></p>
+          </div>
+        </form>
+      </div>
+
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons">
+    <button type="button" class="zm-btn small green m-none mb-sm" ng-click="deviceSettingsOtherModalCtrl.save(deviceSettingsOtherModalCtrl.device)" translate="devices.settings.button.save">Save</button>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/signup/create/signup-create.tpl.html"><section class="auth-page">
+	<div class="auth-switch">
+		<div class="button-row"><button translate="login.title" ui-sref="app.login">Log In</button><button ui-sref="app.signup.create" translate="signup.title">Sign Up</button></div>
+		<div class="slider-line">
+			<div class="slider signup"></div>
+		</div>
+	</div>
+
+	<div class="auth-container">
+
+		<form class="form login-form" novalidate autocomplete="off" name="signupForm">
+			<div class="messages" ng-show="signupCreateCtrl.errors.length">
+				<div class="message animated fadeIn alert alert-danger" ng-repeat="error in signupCreateCtrl.errors">{{error}}</div>
+			</div>
+			<div>
+				<label for="username">
+					<p class="label" translate='signup.label.email'>Email</p>
+					<input class="text-box" type="email" name="email" id="username" ng-change="signupForm.email.$setValidity('inUse',true)" required="required" ng-trim="false" ng-pattern='/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/' ng-model="signupCreateCtrl.data.email" email>
+				</label>
+				<div class="help-block text-red text-sm" ng-show="signupForm.email.$error.pattern || FormAccountSettings.email.$error.required" translate="account.settings.validation.email_invalid">
+					E-mail is invalid.
+				</div>
+				<div class="help-block text-red text-sm" ng-show="!signupForm.email.$prisitne && FormAccountSettings.email.$error.existing" translate="account.settings.validation.username_existing">
+					Email is in use. Please try another one.
+				</div>
+			</div>
+			<div>
+				<label for="password">
+					<p class="label" translate='signup.label.password'>Password</p>
+					<input class="text-box" type="password" name="password" id="password" required="required" ng-model="signupCreateCtrl.data.password" autocomplete="new-password">
+				</label>
+				<div class="error-box text-red text-left">
+					<div ng-show="signupCreateCtrl.data.password.length && signupCreateCtrl.data.quality<=3" translate="account.password.validation.password">Password not secure enough.</div>
+				</div>
+			</div>
+			<div ng-show="signupCreateCtrl.data.password.length || signupCreateCtrl.data.repeat.length">
+				<label for="password-repeat">
+					<p class="label" translate='signup.label.password_repeat'>Password repeat</p>
+					<input class="text-box" type="password" name="repeat" id="password-repeat" required="required" ng-model="signupCreateCtrl.data.repeat" compare-to="signupCreateCtrl.data.password" autocomplete="new-password">
+				</label>
+				<div class="error-box text-red text-left">
+					<div ng-show="signupForm.repeat.$error.compareTo && !signupForm.repeat.$pristine" translate="signup.error.passwords_mismatch">Passwords do not match.</div>
+				</div>
+			</div>
+
+			<div ng-show="signupCreateCtrl.data.password.length">
+				<password-quality ng-model="signupCreateCtrl.data.password"></password-quality>
+			</div>
+
+			<button ng-click="signupCreateCtrl.signup(signupForm)" ng-disabled="signupForm.$invalid || signupCreateCtrl.data.quality<=3" class="button-secondary-default block" translate="signup.button.signup">Sign Up</button>
+			<div class="bottom-links">
+				<div class="text-center">
+					<p>
+						<a class="black-link small" ui-sref="app.login" translate="signup.link.login">Already have an existing account?</a>
+					</p>
+				</div>
+			</div>
+		</form>
+
+
+	</div>
+
+</section></script><script type="text/ng-template" id="app/modules/signup/success/signup-success.tpl.html">
+<div class="zm-success-container">
+  <div class="login-container col-12 col-sm-8 col-md-6 mx-auto text-center pt-5">
+
+    <div class="logo">
+      <img class="logo-zm animated rubberBand" src="/assets/img/logos/zm_logo.svg" alt="" />
+    </div>
+
+    <h2 class="text-center hidden-print" translate="signup.success.title">Congratulations</h2>
+
+    <div class="text-center mb-md hidden-print">
+      <p class="text-bold mb-sm" translate="signup.success.label.welcome">You're now an official Zenmate User.</p>
+      <p class="mb-sm" translate="signup.success.info.print_or_save">Please print your PUK as you'll need it if you lose your login information.</p>
+      <p class="mb-sm" translate="signup.success.info.no_recovery">Even the support team isn't able to recover your account or your orders if you've lost your PUK.</p>
+    </div>
+    <form name="FormCreateSuccess" class="form-horizontal" action="" method="post">
+      <div class="row mb-sm">
+        <div class="col-12">
+          <h3 class="mb-sm text-weight-normal" translate="signup.success.label.username">Your username</h3>
+          <div class="form-control input-lg">
+            <strong>{{ signupSuccessCtrl.data.username }}</strong>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-sm">
+        <div class="col-12">
+          <h3 class="mb-sm text-weight-normal" translate="signup.success.label.token">Your recovery token</h3>
+          <div class="form-control input-lg">
+            <strong>{{ signupSuccessCtrl.data.token }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-actions hidden-print">
+        <div class="col-12 col-md-6 mt-3">
+          <a href class="zm-btn green m-none" ng-click="signupSuccessCtrl.print()"><i class="fa fa-print mr-4"></i> <span translate="signup.success.button.print">Print</span></a>
+        </div>
+        <div class="col-12 col-sm-6 mt-3">
+          <a href class="zm-btn green m-none" ng-click="signupSuccessCtrl.download()"><i class="fa fa-file-text-o mr-4"></i> <span translate="signup.success.button.save">Save</span></a>
+        </div>
+      </div>
+    </form>
+
+    <div class="bottom-links text-center mt-md hidden-print">
+      <div class="text-center">
+        <a class="black-link small" href="/?recoverid={{signupSuccessCtrl.data.token}}" translate="signup.success.button.account">Login to My Account</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</script><script type="text/ng-template" id="app/modules/signup/signup.tpl.html"><section class="center-block text-center clearfix" ui-view></section></script><script type="text/ng-template" id="app/modules/recover/cleverbridge/recover-cleverbridge.tpl.html">
+<section class="auth-page">
+  <div class="auth-switch">
+    <div class="button-row"><button translate="login.title">Log In</button><button ui-sref="app.signup.create" translate="signup.title">Sign Up</button></div>
+    <div class="slider-line">
+      <div class="slider login"></div>
+    </div>
+  </div>
+
+  <div class="auth-container">
+
+
+    <h2 class="text-center" translate="recover.title">Lost your password?</h2>
+
+    <p class="text-center mb-md">
+      <span translate="recover.info.cleverbridge.headline">Please enter your cleverbridge reference number and email used to purchase.</span><br/>
+      <small translate="recover.info.cleverbridge.subline">You should find these informations in your order confirmation email.</small>
+    </p>
+
+    <p class="text-center mb-md">
+      <a href="{{recoverCleverbridgeCtrl.supportLink}}" target="_blank" translate="recover.link.token">I did not purchase via Cleverbridge</a>
+    </p>
+
+    <form name="recoverForm" class="mb-md" method="post">
+      <!-- <input class="text-box disabled" type="text" name="name" value="" placeholder="Email" disabled="disabled"> -->
+      <input class="text-box" type="text" name="orderId" required placeholder="{{'recover.label.reference_id' | translate}}" ng-model="recoverCleverbridgeCtrl.data.orderId">
+
+      <button type="button" ng-click="recoverCleverbridgeCtrl.recover(recoverCleverbridgeCtrl.data.orderId)" class="button-secondary-default block" ng-disabled="!recoverCleverbridgeCtrl.data.orderId" translate="recover.button.recover">Recover</button>
+    </form>
+
+    <div class="bottom-links">
+      <div class="text-center">
+        <p>
+          <a class="black-link small" ui-sref="app.login" translate="recover.link.login">Back to Login Page</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section></script><script type="text/ng-template" id="app/modules/recover/email/recover-email.tpl.html">
+<section class="auth-page">
+  <div class="auth-switch">
+    <div class="button-row"><button translate="login.title">Log In</button><button ui-sref="app.signup.create" translate="signup.title">Sign Up</button></div>
+    <div class="slider-line">
+      <div class="slider login"></div>
+    </div>
+  </div>
+
+  <div class="auth-container">
+
+     <h3 class="text-center" translate="recover.title">Lost your password?</h3>
+
+    <p class="text-center mb-md">
+      <span translate="recover.info.email.headline">Please enter your email address used to purchase.</span><br/>
+      <small translate="recover.info.email.subline">You should find these informations in your order confirmation email.</small>
+    </p>
+
+<!--    <p class="text-center mb-md">-->
+<!--      <a ui-sref="app.recover.token" translate="recover.link.email">I don't know my email address.</a>-->
+<!--    </p>-->
+    <p class="text-center mb-md">
+      <a href="{{recoverEmailCtrl.supportLink}}" translate="recover.link.email" target="_blank">I don't know my email address or Recovery key (PUK).</a>
+    </p>
+
+    <form name="recoverForm" class="mb-md" method="post">
+      <!-- <input class="text-box disabled" type="text" name="name" value="" placeholder="Email" disabled="disabled"> -->
+      <input class="text-box" type="email" name="email" required placeholder="{{'recover.label.email' | translate}}" ng-pattern='/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/' ng-model="recoverEmailCtrl.data.email">
+
+      <button type="button" ng-click="recoverEmailCtrl.recover(recoverEmailCtrl.data.email)" class="button-secondary-default block" ng-disabled="!recoverEmailCtrl.data.email" translate="recover.button.recover">Recover</button>
+    </form>
+
+    <div class="bottom-links">
+      <div class="text-center">
+        <p>
+          <a class="black-link small" ui-sref="app.login" translate="recover.link.login">Back to Login Page</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section></script><script type="text/ng-template" id="app/modules/recover/token/recover-token.tpl.html">
+<section class="auth-page">
+  <div class="auth-switch">
+    <div class="button-row"><button translate="login.title">Log In</button><button ui-sref="app.signup.create" translate="signup.title">Sign Up</button></div>
+    <div class="slider-line">
+      <div class="slider login"></div>
+    </div>
+  </div>
+
+  <div class="auth-container">
+
+
+    <h2 class="text-center" translate="recover.title">Lost your password?</h2>
+
+    <p class="text-center mb-md">
+      <span translate="recover.info.token.headline">Please enter your recovery key (PUK).</span><br>
+      <small translate="recover.info.token.subline">You should have saved or printed the key during account creation.</small>
+    </p>
+
+    <p class="text-center mb-md">
+      <a ui-sref="app.recover.cleverbridge" translate="recover.link.cleverbridge">Lost your Token?</a>
+    </p>
+    <p class="text-center mb-md">
+      <a href="{{recoverTokenCtrl.supportLink}}" translate="recover.link.suport" target="_blank">I don't know my email address or Recovery key (PUK).</a>
+    </p>
+    <div ng-if="recoverTokenCtrl.prefilled && !recoverTokenCtrl.automatic" class="messages">
+      <div class="message animated fadeIn info alert alert-info" translate="recover.label.prefilled"><strong>Recovery key (PUK) is prefilled!</strong> Press the button to login!</div>
+    </div>
+
+    <div ng-if="recoverTokenCtrl.prefilled && recoverTokenCtrl.automatic" class="messages">
+      <div class="message animated fadeIn info alert alert-info" translate="recover.label.automatic"><strong>Just wait a second.</strong> Logging you in...</div>
+    </div>
+
+    <div ng-if="recoverTokenCtrl.error" class="messages">
+      <div class="message animated fadeIn info alert alert-danger" translate="recover.error.token">Recovery key (PUK) is invalid. Please try again.</div>
+    </div>
+
+    <form class="" method="post" autocomplete="off">
+      <!-- <input class="text-box disabled" type="text" name="name" value="" placeholder="Email" disabled="disabled"> -->
+      <input class="text-box" type="text" name="token" value="" placeholder="{{'recover.label.token' | translate}}" ng-model="recoverTokenCtrl.data.token" autocomplete="new-password">
+
+      <button type="submit" ng-click="recoverTokenCtrl.recover(recoverTokenCtrl.data)" class="button-secondary-default block" ng-disabled="!recoverTokenCtrl.data.token" translate="recover.button.recover">Recover</button>
+    </form>
+
+    <div class="bottom-links">
+      <div class="text-center">
+        <p>
+          <a class="black-link small" ui-sref="app.login" translate="recover.link.login">Back to Login Page</a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section></script><script type="text/ng-template" id="app/modules/recover/purchase/recover-purchase.tpl.html"></script><script type="text/ng-template" id="app/modules/recover/recover.tpl.html"><section class="center-block text-center clearfix" ui-view=""></section></script><script type="text/ng-template" id="app/modules/account/account.tpl.html"><div class="zm-account">
+  <div class="zm-subheader">
+    <h2 class="zm-subheader-title" translate="account.overview.title">Account overview</h2>
+    <div class="zm-subheader-email">{{ account.get('userEmail') }}</div>
+  </div>
+  <div class="zm-account-summary">
+<!--    PREMIUM USER -->
+    <div class="info" ng-if="(account.isPremium() || (account.getActiveSubscription().lastValidBilling && account.getActiveSubscription().expired && account.getDaysSinceExpired() <= 4) ) || account.account.isPaidTrial()">
+      <div class="zm-headline" translate="account.overview.label.congratulations">Congratulations!</div>
+      <div class="zm-headline huge" translate="account.overview.label.fullest">You are using ZenMate to the fullest!</div>
+    </div>
+<!--    FREE USER-->
+    <div class="info" ng-if="(account.isFree() && !account.getActiveSubscription().expired) || !account.getActiveSubscription().lastValidBilling && !account.isTrial()">
+      <div class="zm-headline" translate="account.overview.label.congratulations">Congratulations!</div>
+      <div class="zm-headline huge" translate="account.overview.label.free_zm">You are using ZenMate Free!</div>
+      <div class="zm-headline bold" ng-if="account.getActivePlan().id==='2005'"  translate="account.overview.label.confirm_trial" >Confirm your email & start your free trial now</div>
+<!--      <a href="{{accountCtrl.baseLink}}" set-conversionpoint class="zm-btn small blue no-margin-left mr-sm action-upgrade" ng-if="(account.isUpgradable() || account.isPaidTrial() || account.isFree()) && account.getActivePlan().id !== '2005'" target="_blank"><span translate="account.overview.button.upgrade">Upgrade</span></a>-->
+      <a href="{{accountCtrl.baseLink}}?utm_source=acchome&utm_medium=banner" target="_blank"><img class="img-banner-free" src="assets/img/free_account/{{language}}.png" alt=""></a>
+
+    </div>
+<!--    EXPIRED USER -->
+
+    <div class="info" ng-if="account.getActiveSubscription().expired && account.getDaysSinceExpired() > 4">
+      <div class="zm-headline" translate="account.overview.label.expired">Your ZenMate ultimate expired</div>
+      <div class="counter" ng-if="account.getActiveSubscription()">
+        <a href="{{accountCtrl.baseLink}}" set-conversionpoint class="zm-btn small blue no-margin-left mr-sm action-upgrade" ng-if="account.isUpgradable() || account.isPaidTrial() || account.isFree()" target="_blank"><span translate="account.overview.button.upgrade">Upgrade</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-row">
+    <div class="zm-account-features">
+      <div class="title">
+        <div class="zm-subtitle" translate="account.overview.label.account_status">Your account status</div>
+        <div class="zm-headline zm-headline-bold">
+          <span ng-if="(account.isPremium() && !account.getActiveSubscription().expired) || account.isTrial()">{{account.getActiveProduct().plan.internalName}}</span>
+          <span ng-if="account.isFree() && account.getActivePlan().id !== '2005' && account.getActivePlan().id !== '2015'" translate="account.overview.label.free">FREE</span>
+          <h5 ng-if="account.isFree() && account.getActivePlan().id==='2005'" translate="account.overview.label.free_pending">FREE - Pending trial confirmation</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="feature-set">
+            <div class="feature">
+              <div class="zm-label" translate="account.overview.label.locations">Locations</div>
+              <div class="long-toggle">
+                <div class="zm-subtitle left">4</div>
+                <label class="mx-2">
+                  <input type="checkbox" disabled="disabled" ng-checked="account.checkedIfPro()" class="ios-switch longswitch">
+                  <div>
+                    <div></div>
+                  </div>
+                  <!---->
+                </label>
+                <div class="zm-subtitle right">30+</div>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="zm-label" translate="account.overview.label.max_speed">Max speed</div>
+              <div class="long-toggle">
+                <div class="zm-subtitle left">2 MB/s</div>
+                <label class="mx-2">
+                  <input type="checkbox" disabled="disabled" ng-checked="account.checkedIfPro()" class="ios-switch longswitch">
+                  <div>
+                    <div></div>
+                  </div>
+                  <!---->
+                </label>
+                <div class="zm-subtitle right">1 GB/s</div>
+              </div>
+            </div>
+          </div>
+          <div class="feature-set">
+            <div class="feature">
+              <div class="zm-label" translate="account.overview.label.encryption">Encryption</div>
+              <label >
+                <input type="checkbox" disabled="disabled" checked class="ios-switch bigswitch">
+                <div>
+                  <div></div>
+                </div>
+                <!---->
+              </label>
+            </div>
+            <div class="feature">
+              <div class="zm-label" translate="account.overview.label.smart_locations">Smart locations</div>
+              <label >
+                <input type="checkbox" disabled="disabled" checked class="ios-switch bigswitch">
+                <div>
+                  <div></div>
+                </div>
+                <!---->
+              </label>
+            </div>
+            <div class="feature">
+              <div class="zm-label" translate="account.overview.label.identity">Identity Shield</div>
+              <label >
+                <input type="checkbox" disabled="disabled" ng-checked="account.checkedIfPro()" class="ios-switch bigswitch">
+                <div>
+                  <div></div>
+                </div>
+                <!---->
+              </label>
+            </div>
+            <div class="feature">
+              <div class="zm-label" translate="account.overview.label.streaming">Streaming guarantee</div>
+              <label >
+                <input type="checkbox" disabled="disabled" ng-checked="account.checkedIfPro()" class="ios-switch bigswitch">
+                <div>
+                  <div></div>
+                </div>
+                <!---->
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 text-center">
+          <a href class="no-margin-left mr-sm action-upgrade" ng-click="accountCtrl.showActivation()" translate="account.overview.button.add_activation_key">Add activation key</a>
+        </div>
+        <div class="col-12 text-center px-4 d-flex align-items-center justify-content-center">
+         <div ng-show="accountCtrl.data.showSerial">
+            <p class="zm-headline" translate="account.overview.activation.title">Activate your Zenmate key</p>
+            <i translate="account.overview.activation.notice">>If you purchased a subscription from our website, you do not need an activation code</i>
+            <div class="col-8 mx-auto">
+              <form class="mt-lg mb-lg " name="FormActivateSerial" id="FormActivateSerial" autocomplete="off">
+                <!--<span translate="serial.activation.title">I already have an activation key:</span><br>-->
+                <div class="messages" >
+                  <div class="message animated fadeIn alert alert-danger m-none mt-sm" ng-show="accountCtrl.data.serial.error" translate="serial.activation.error.invalid">Serial invalid.</div>
+                </div>
+                <input type="text" name="serial" class="zm-form-input" ng-model="accountCtrl.data.serial.key" placeholder="xxxxx-xxxxx-xxxxx-xxxxx-xxxxx" autocomplete="new-password">
+                <button class="zm-btn blue d-block no-margin-left mx-auto mt-4" ng-disabled="(!accountCtrl.data.serial.key.length || (!accountCtrl.isValidSerial(accountCtrl.data.serial.key)))" ng-click="accountCtrl.activateSerial(accountCtrl.data.serial.key)" translate="account.overview.activation.activate">Activate</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="available-for">
+        <div class="zm-label" translate="devices.available_for">Available for</div>
+        <div class="row">
+          <div class="platforms col-12 col-sm-6 p-0 mt-2">
+            <div class="platform">
+              <a ng-href="{{accountCtrl.getDownloadUrl('firefox')}}" target="_blank">
+                <div class="firefox available"></div>
+              </a>
+            </div>
+            <div class="platform">
+              <a ng-href="{{accountCtrl.getDownloadUrl('chrome')}}" target="_blank">
+                <div class="chrome available"></div>
+              </a>
+            </div>
+            <div class="platform">
+              <a ng-href="{{accountCtrl.getDownloadUrl('opera')}}" target="_blank">
+                <div class="opera available"></div>
+              </a>
+            </div>
+            <div class="platform">
+              <a ng-href="{{accountCtrl.getDownloadUrl('windows')}}" target="_blank">
+                <div class="windows" ng-class="{'available': account.isPremium()}"></div>
+              </a>
+            </div>
+          </div>
+          <div class="platforms col-12 col-sm-6 p-0 mt-2">
+            <div class="platform">
+              <a ng-href="{{accountCtrl.getDownloadUrl('macos')}}" target="_blank">
+                <div class="macos" ng-class="{'available': account.isPremium()}"></div>
+              </a>
+            </div>
+            <div class="platform">
+              <a href ng-href="{{accountCtrl.getDownloadUrl('ios')}}" target="_blank">
+                <div class="ios" ng-class="{'available': account.isPremium()}"></div>
+              </a>
+            </div>
+            <div class="platform">
+              <a href ng-href="{{accountCtrl.getDownloadUrl('android')}}" target="_blank">
+                <div class="android" ng-class="{'available': account.isPremium()}"></div>
+              </a>
+            </div>
+            <div class="platform">
+              <a href ui-sref="app.devices.create({ os: 'custom' })" ng-click="deviceAddModalCtrl.osSelection='custom'" ng-if="account.isPremium()">
+                <div class="linux" ng-class="{'available': account.isPremium()}"></div>
+              </a>
+              <a href ng-href="{{accountCtrl.getDownloadUrl('custom')}}" target="_blank" ng-if="!account.isPremium()">
+                <div class="linux" ng-class="{'available': account.isPremium()}"></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="separator"></div>
+  </div>
+</div>
+</script><script type="text/ng-template" id="app/modules/account/modal/serial.tpl.html"><div class="modal-header">
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body" style="min-height: 140px">
+  <div class="text-center">
+    <img src="/assets/img/logos/zm_logo.svg" class="img-responsive">
+  </div>
+  <div class="text-center mb-md">
+    <h3 class="title" translate="serial.activation.headline">You have activated a new product</h3>
+    <h3 class="title cg-darkgrey-text text-center mb-md">
+      {{serialPreviewCtrl.upgrade.new_product.internal_name}}
+    </h3>
+    <div class="mb-md">
+      <span class="text-light text-uppercase" translate="serial.activation.label.runtime">Runtime</span>
+      <div class="text-bold" ng-if="+serialPreviewCtrl.upgrade.new_product.days">
+        <span>{{serialPreviewCtrl.upgrade.new_product.days}}</span>
+        <span>day(s)</span>
+      </div>
+      <div class="text-bold" ng-if="+serialPreviewCtrl.upgrade.new_product.months">
+        <span>{{serialPreviewCtrl.upgrade.new_product.months}}</span>
+        <span>month(s)</span>
+      </div>
+    </div>
+    <div class="mb-md">
+      <span class="text-light text-uppercase" translate="serial.activation.label.expires_at">Expires at</span><br>
+      <span class="text-bold" title="{{serialPreviewCtrl.upgrade.next_billing_date | amDateFormat:'L'}}">{{serialPreviewCtrl.upgrade.next_billing_date | amDateFormat:'L'}}</span>
+    </div>
+  </div>
+  <p class="cg-darkgrey-text text-center" translate="serial.activation.description">
+    Check out the new features and enjoy your freedom!
+  </p>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons text-center w-100">
+    <button type="button" class="zm-btn green mx-auto" ng-click="serialPreviewCtrl.save(serialPreviewCtrl.upgrade)"><i class="fa fa-check"></i> <span translate="serial.activation.button.complete">Complete activation</span></button>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/account/modal/autocreated.tpl.html"><div class="modal-header">
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title cg-darkgray-text">
+    <span translate="account.autocreated.title">Autocreated</span><br>
+    <span ng-if="!accountAutoCreatedModalCtrl.success" class="subtitle" translate="account.autocreated.subtitle">Complete your Account</span>
+    <span ng-if="accountAutoCreatedModalCtrl.success" class="subtitle" translate="account.autocreated.success.subtitle">Account has been completed</span>
+  </h4>
+</div>
+<div class="modal-body">
+  <div class="text-center">
+    <img class="modal-img" src="http://account.zenmate.com/assets/img/logos/zm_logo.svg">
+  </div>
+  <div ng-if="!accountAutoCreatedModalCtrl.success">
+    <p class="text-light mb-lg" translate="account.autocreated.description">In order to use our awesome service on different devices you need to create a password!</p>
+
+    <form name="FormAccountComplete" ng-submit="(FormAccountComplete.$invalid || !accountAutoCreatedModalCtrl.data.password.length || !accountAutoCreatedModalCtrl.validatePassword(accountAutoCreatedModalCtrl.data.password)) && accountAutoCreatedModalCtrl.save(accountAutoCreatedModalCtrl.data)">
+      <div class="form-group">
+        <label for="accountUsername" translate="account.settings.label.username">Username</label>
+        <input type="text" name="username" class="cg-textfield cg-textfield-sm no-margin-left" ng-class="{'cg-red-border':accountAutoCreatedModalCtrl.error.username,'':!accountAutoCreatedModalCtrl.error.username}" id="accountUsername" required="required" ng-pattern="/^[a-zA-Z0-9\-_\.]{6,}$/" placeholder="{{'account.settings.placeholder.username' | translate}}" ng-model="accountAutoCreatedModalCtrl.data.username">
+        <div class="help-block text-sm" ng-show="FormAccountComplete.username.$invalid" translate="account.settings.validation.username_invalid"></div>
+        <div class="help-block text-sm cg-red-text" ng-show="accountAutoCreatedModalCtrl.error.userexists" translate="signup.messages.user_exists_title"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="accountNewPassword" translate="account.password.label.new_password">New Password</label>
+        <input type="password" name="password" class="cg-textfield cg-textfield-sm no-margin-left" id="accountNewPassword" autocomplete="new-password" ng-model="accountAutoCreatedModalCtrl.data.password" placeholder="{{'account.password.placeholder.new_password' | translate}}">
+
+        <div class="help-block text-sm ng-cloak cg-red-text" ng-show="accountAutoCreatedModalCtrl.data.password && accountAutoCreatedModalCtrl.data.password.length && accountAutoCreatedModalCtrl.data.quality <=3 " translate="account.password.validation.password">
+          Passwort muss mindestens 6 Zeichen enthalten, erlaubt sind Buchstaben (a-z, A-Z) und Zahlen (0-9).
+        </div>
+
+        <div class="mt-sm mb-sm ng-cloak" ng-show="accountAutoCreatedModalCtrl.data.password && accountAutoCreatedModalCtrl.data.password.length">
+          <div>
+            <span class="passQuality" translate="signup.label.password_quality">Passwort-Qualität</span>
+            <span class="passQuality level ng-cloak" translate="{{accountAutoCreatedModalCtrl.getPasswordQualityDescription(accountAutoCreatedModalCtrl.data.quality)}}">{{accountAutoCreatedModalCtrl.getPasswordQualityDescription(accountAutoCreatedModalCtrl.data.quality)}}</span>
+          </div>
+          <div class="passQuality progress ng-cloak" style="margin: auto; box-sizing: border-box">
+            <div class="progress-bar" ng-class="{'progress-bar-danger': accountAutoCreatedModalCtrl.data.quality < 2, 'progress-bar-warning': accountAutoCreatedModalCtrl.data.quality < 3, 'progress-bar-info': accountAutoCreatedModalCtrl.data.quality < 4, 'progress-bar-success': accountAutoCreatedModalCtrl.data.quality >= 4}" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-attr-style="width: {{20 * accountAutoCreatedModalCtrl.data.quality}}%" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="password" name="repeat" class="cg-textfield cg-textfield-sm no-margin-left" id="accountPasswordRepeat" compare-to="accountAutoCreatedModalCtrl.data.password" ng-model="accountAutoCreatedModalCtrl.data.repeat" autocomplete="new-password" placeholder="{{'account.password.placeholder.repeat_password' | translate}}">
+        <div class="help-block cg-red-text text-sm" ng-show="FormAccountComplete.repeat.$error.compareTo" translate="account.password.validation.not_same"></div>
+      </div>
+    </form>
+  </div>
+  <div ng-if="accountAutoCreatedModalCtrl.success">
+    <p class="text-light mb-lg" translate="account.autocreated.success.description">In order to use our awesome service on different devices you need to create a password!</p>
+
+    <form name="FormCreateSuccess" class="form-horizontal" action="" method="post">
+      <div class="row mb-sm">
+        <div class="col-xs-12">
+          <h3 class="mb-sm text-weight-normal" translate="account.autocreated.success.label.username">Your username</h3>
+          <div class="form-control input-lg m-none">
+            <strong>{{ accountAutoCreatedModalCtrl.data.username }}</strong>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-sm">
+        <div class="col-xs-12">
+          <h3 class="mb-sm text-weight-normal" translate="account.autocreated.success.label.token">Your recovery token</h3>
+          <div class="form-control input-lg m-none">
+            <strong>{{ accountAutoCreatedModalCtrl.data.token }}</strong>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons">
+    <button ng-if="accountAutoCreatedModalCtrl.success" class="zm-btn small cg-yellow mr-none" ng-click="accountAutoCreatedModalCtrl.download()"><i class="fa fa-file-text-o"></i> <span translate="account.autocreated.success.button.download">Download</span></button>
+    <button ng-if="!accountAutoCreatedModalCtrl.success" type="button" class="zm-btn small green mr-none" ng-disabled="(FormAccountComplete.$invalid || !accountAutoCreatedModalCtrl.data.password.length || !accountAutoCreatedModalCtrl.validatePassword(accountAutoCreatedModalCtrl.data.password)) || accountAutoCreatedModalCtrl.data.password!==accountAutoCreatedModalCtrl.data.repeat" ng-click="accountAutoCreatedModalCtrl.save(accountAutoCreatedModalCtrl.data)" translate="account.password.button.save">Save</button>
+    <button type="button" class="cg-line-btn cg-line-btn-sm cg-darkgray mr-none" ng-click="$dismiss('close')" translate="account.password.button.cancel">Cancel</button>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/account/modal/remove.tpl.html">
+<div class="modal-header">
+  <h4 class="modal-title cg-red-text" translate="account.deletion.title">Delete Account</h4>
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+
+</div>
+<div class="modal-body">
+  <p class="cg-darkgray-text" translate="account.deletion.message">
+    Do you really want to permanently delete this account?
+  </p>
+  <p class="text-light">
+    <i class="fa fa-exclamation-triangle"></i> <span class="small zm-red-text" translate="account.deletion.warning">Your subscription will end and all your devices will get disconnected.</span>
+  </p>
+  <div class="mt-md">
+    <p class="checkbox">
+      <label for="deleteConfirm">
+        <input type="checkbox" id="deleteConfirm" value="1" ng-model="accountDeleteModalCtrl.data.confirmation"> <span translate="account.deletion.confirmation">Yes, permanently delete my account and remove all connected devices.</span>
+      </label>
+    </p>
+  </div>
+  <div class="mt-md" ng-show="accountDeleteModalCtrl.data.confirmation">
+    <form name="FormAccountDelete" autocomplete="off">
+      <div class="form-group">
+        <label for="accountPasswordCurrent" translate="account.deletion.label.current_password">Current Password</label>
+        <input type="password" name="current" required="required" class="zm-form-input" id="accountPasswordCurrent" ng-model="accountDeleteModalCtrl.data.password" autocomplete="new-password" placeholder="{{'account.deletion.placeholder.current_password' | translate}}">
+        <div class="help-block cg-red-text text-sm" ng-show="accountDeleteModalCtrl.error" translate="account.deletion.validation.current_invalid">
+          Aktuelles Passwort Current password invalid.
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons">
+    <button type="button" class="zm-btn red mr-md ml-none mb-md " ng-disabled="!accountDeleteModalCtrl.data.confirmation || !(accountDeleteModalCtrl.data.password.length>0)" ng-click="accountDeleteModalCtrl.remove(accountDeleteModalCtrl.data.password)" translate="account.deletion.button.delete">Delete My Account</button>
+    <button type="button" class="zm-btn small mr-none ml-none mb-md" ng-click="$dismiss('close')" translate="account.deletion.button.cancel">Cancel</button>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/account/modal/edit.tpl.html"><div class="modal-header">
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title cg-darkgray-text" translate="account.settings.title">Account Settings</h4>
+</div>
+<div class="modal-body">
+  <form name="FormAccountSettings">
+    <div class="form-group">
+      <label for="accountUsername" translate="account.settings.label.username">Username</label>
+      <input type="text" name="accountUsername" class="cg-textfield cg-textfield-sm no-margin-left" id="accountUsername" required="required" ng-pattern="/^.{6,}$/" placeholder="{{'account.settings.placeholder.username' | translate}}" ng-model="accountSettingsModalCtrl.data.username">
+      <div class="help-block cg-red-text text-sm" ng-show="FormAccountSettings.accountUsername.$error.pattern || FormAccountSettings.accountUsername.$error.required" translate="account.settings.validation.username_invalid">
+        Username must have at least 6 chars, containing letters (a-z, A-Z), numbers (0-9) and special chars (.,-,_,!).
+      </div>
+      <div class="help-block cg-red-text text-sm" ng-show="!FormAccountSettings.accountUsername.$prisitne && FormAccountSettings.accountUsername.$error.existing" translate="signup.messages.user_exists_title">
+        Username is in use. Please try another one.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="accountEmail" translate="account.settings.label.email">Username</label>
+      <input type="email" name="accountEmail" class="cg-textfield cg-textfield-sm no-margin-left" id="accountEmail" required="required" ng-pattern='/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/' placeholder="{{'account.settings.placeholder.email' | translate}}" ng-model="accountSettingsModalCtrl.data.email">
+      <div class="help-block cg-red-text text-sm" ng-show="FormAccountSettings.accountEmail.$error.pattern || FormAccountSettings.accountEmail.$error.required" translate="account.settings.validation.email_invalid">
+        E-mail is invalid.
+      </div>
+      <div class="help-block cg-red-text text-sm" ng-show="!FormAccountSettings.accountEmail.$prisitne && FormAccountSettings.accountEmail.$error.existing" translate="account.settings.validation.username_existing">
+        Email is in use. Please try another one.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="accountPasswordCurrent" translate="account.settings.label.current_password">Current Password or PUK</label>
+      <input type="password" name="accountPassword" class="cg-textfield cg-textfield-sm no-margin-left" id="accountPasswordCurrent" required="required" autocomplete="new-password" placeholder="{{'account.settings.placeholder.current_password' | translate}}" ng-model="accountSettingsModalCtrl.data.password">
+      <div class="help-block cg-red-text text-sm" ng-show="FormAccountSettings.accountPassword.$touched && FormAccountSettings.accountPassword.$error.valid" translate="account.settings.validation.current_invalid">
+        Current password or PUK is invalid.
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons">
+    <button class="zm-btn small green mr-none" ng-click="accountSettingsModalCtrl.save(accountSettingsModalCtrl.data,FormAccountSettings)" ng-disabled=" !(FormAccountSettings.accountEmail.$dirty || FormAccountSettings.accountUsername.$dirty) || FormAccountSettings.$invalid" translate="account.settings.button.save">Save</button>
+    <button class="cg-line-btn cg-line-btn-sm cg-darkgray mr-none" ng-click="$dismiss('close')" translate="account.settings.button.cancel">Cancel</button>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/account/modal/feedback.tpl.html"><div class="modal-header">
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title cg-darkgray-text">Send your Feedback</h4>
+</div>
+<div class="modal-body">
+  <div class="form-message" ng-if="!accountFeedbackdModalCtrl.data.success">
+    <form name="FormAccountFeedback">
+      <div class="form-group">
+        <label translate="account.settings.label.email">Email</label>
+        <span>{{accountFeedbackdModalCtrl.data.email}}</span>
+      </div>
+      <div class="form-group">
+        <label for="feedbackMessage"><strong>How can we make this account better for you?</strong></label>
+        <textarea name="feedbackMessage" rows = "5" class="cg-textfield cg-textfield-sm no-margin-left" id="feedbackMessage" required="required" ng-model="accountFeedbackdModalCtrl.data.message" placeholder="Your suggestions, ideas, complaints will greatly help us"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="success-message" ng-if="accountFeedbackdModalCtrl.data.success">
+    <p>Thank you for your feedback!</p>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons">
+
+    <button class="zm-btn small green mr-none" ng-if="!accountFeedbackdModalCtrl.data.success" ng-click="accountFeedbackdModalCtrl.save(accountFeedbackdModalCtrl.data,FormAccountFeedback)" ng-disabled="!(accountFeedbackdModalCtrl.data.message!='' && accountFeedbackdModalCtrl.data.message.length>1)" translate="account.settings.button.send">Send</button>
+    <button class="cg-line-btn cg-line-btn-sm cg-darkgray mr-none" ng-click="$dismiss('close')" translate="account.settings.button.cancel">Cancel</button>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/account/modal/password.tpl.html"><div class="modal-header">
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title cg-darkgray-text" translate="account.password.title">Account Password</h4>
+</div>
+<div class="modal-body" block-ui="modalBlockUI">
+  <form name="FormAccountPassword">
+    <div class="form-group">
+      <div class="help-block text-sm cg-red-text ng-cloak" ng-if="accountPasswordModalCtrl.data.password_new.length>0 && (accountPasswordModalCtrl.data.password===accountPasswordModalCtrl.data.password_new)" translate="account.password.validation.same">
+        New password must be different from the old password
+      </div>
+      <label for="accountNewPassword" translate="account.password.label.new_password">New Password</label>
+      <input type="password" name="password" class="cg-textfield cg-textfield-sm no-margin-left" id="accountNewPassword" validate-password autocomplete="new-password" ng-model="accountPasswordModalCtrl.data.password_new" placeholder="{{'account.password.placeholder.new_password' | translate}}">
+
+      <div class="help-block text-sm ng-cloak cg-red-text" ng-show="accountPasswordModalCtrl.data.password_new && accountPasswordModalCtrl.data.password_new.length && accountPasswordModalCtrl.data.quality <=3" translate="account.password.validation.password">
+        Passwort muss mindestens 6 Zeichen enthalten, erlaubt sind Buchstaben (a-z, A-Z) und Zahlen (0-9).
+      </div>
+
+      <div class="mt-sm mb-sm ng-cloak" ng-show="accountPasswordModalCtrl.data.password_new && accountPasswordModalCtrl.data.password_new.length">
+        <div>
+          <span class="passQuality" translate="signup.label.password_quality">Passwort-Qualität</span>
+          <span class="passQuality level ng-cloak" translate="{{accountPasswordModalCtrl.getPasswordQualityDescription(accountPasswordModalCtrl.data.quality)}}">{{accountPasswordModalCtrl.getPasswordQualityDescription(accountPasswordModalCtrl.data.quality)}}</span>
+        </div>
+        <div class="passQuality progress ng-cloak" style="margin: auto; box-sizing: border-box">
+          <div class="progress-bar" ng-class="{'progress-bar-danger': accountPasswordModalCtrl.data.quality < 2, 'progress-bar-warning': accountPasswordModalCtrl.data.quality < 3, 'progress-bar-info': accountPasswordModalCtrl.data.quality < 4, 'progress-bar-success': accountPasswordModalCtrl.data.quality >= 4}" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-attr-style="width: {{20 * accountPasswordModalCtrl.data.quality}}%" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="password" name="repeat" class="cg-textfield cg-textfield-sm no-margin-left" id="accountPasswordRepeat" compare-to="accountPasswordModalCtrl.data.password_new" ng-model="accountPasswordModalCtrl.data.password_repeat" autocomplete="new-password" placeholder="{{'account.password.placeholder.repeat_password' | translate}}">
+      <div class="help-block cg-red-text text-sm" ng-show="FormAccountPassword.repeat.$error.compareTo" translate="account.password.validation.not_same">
+        Passwörter sind nicht identisch.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="accountPasswordCurrent" translate="account.password.label.current_password">Current Password or PUK</label>
+      <input type="password" name="current" class="cg-textfield cg-textfield-sm no-margin-left" id="accountPasswordCurrent" ng-model="accountPasswordModalCtrl.data.password" autocomplete="new-password" placeholder="{{'account.password.placeholder.current_password' | translate}}">
+      <div class="help-block cg-red-text text-sm" ng-show="FormAccountPassword.current.$invalid" translate="account.password.validation.current_invalid">
+        Aktuelles Passwort ist nicht gültig.
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons">
+    <button type="button" class="zm-btn small green mr-none" ng-disabled="(FormAccountPassword.$invalid || !accountPasswordModalCtrl.data.password.length || !accountPasswordModalCtrl.validatePassword(accountPasswordModalCtrl.data.password_new) || accountPasswordModalCtrl.data.password_new !== accountPasswordModalCtrl.data.password_repeat || accountPasswordModalCtrl.data.quality<=3) || (accountPasswordModalCtrl.data.password===accountPasswordModalCtrl.data.password_new)" ng-click="accountPasswordModalCtrl.save(accountPasswordModalCtrl.data)" translate="account.password.button.save">Save</button>
+    <button type="button" class="cg-line-btn cg-line-btn-sm cg-darkgray mr-none" ng-click="$dismiss('close')" translate="account.password.button.cancel">Cancel</button>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/support/support.tpl.html"><div class="zm-subheader">
+  <h2 class="zm-subheader-title" translate="support.title">My Support</h2>
+  <!--<span class="pull-right"><a href class="btn btn-default hvr-icon-rotate" ng-click="subscriptionsListCtrl.refresh()" ng-disabled="accountCtrl.isRefreshing"><i class="fa fa-refresh hvr-icon"></i> Refresh</a> </span>-->
+</div>
+<div class="zm-default-container">
+  <div class="section-content support-content">
+
+    <div class="support-box">
+      <h4 translate="support.faq.title">Read our FAQ</h4>
+      <div class="description-cell">
+        <p class="descriptive" translate="support.faq.content">
+          Our Frequently Asked Questions provide you with answers for the most common problems.
+        </p>
+      </div>
+      <div class="button-cell">
+        <a href="{{supportCtrl.faqLink}}" target="_blank" class="zm-btn small" translate="support.faq.button.read_faq">Read FAQ</a>
+      </div>
+    </div>
+    <!-- Premium Support (Upgrade) -->
+    <div class="support-box">
+      <h4 translate="support.premium.title">Contact Support</h4>
+      <div class="description-cell">
+        <p class="descriptive" translate="support.premium.content">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+      <div class="button-cell">
+        <a href="{{supportCtrl.supportLink}}" target="_blank" class="zm-btn small green" translate="support.premium.button.contact">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/settings/settings.tpl.html"><div class="zm-subheader">
+  <h2 class="zm-subheader-title" translate="settings.title">Settings</h2>
+ </div>
+<div class="zm-settings-container">
+  <div class="zm-settings-block">
+    <h2 class="zm-settings-block-headline" translate="settings.account.title">Account</h2>
+    <div class="zm-settings-block-inner">
+      <div class="zm-settings-item zm-settings-item zm-settings-change-username">
+        <header class="zm-settings-item-header">
+          <div class="zm-settings-item-header-column"><span class="zm-settings-item-header-label" translate="account.settings.label.username">Username</span></div>
+          <div class="zm-settings-item-header-column" ng-if="!settingsCtrl.editForm.username"><span class="zm-settings-item-header-description d-none d-sm-block">{{ account.get('userName') }}</span><a href="" class="zm-settings-item-header-link" ng-click="settingsCtrl.showForm('username')" translate="buttons.edit">EDIT</a></div>
+        </header>
+        <!---->
+
+        <div class="zm-settings-item-body-wrapper" ng-class="{'show': settingsCtrl.editForm.username}">
+          <div class="zm-settings-item-body">
+            <!---->
+            <a class="zm-settings-item-body-close"><img src="https://crm-cdn.zenguard.biz/crm/file_1539956792926.svg" ng-click="settingsCtrl.showForm('username')" class="icon-close"></a>
+            <div class="zm-settings-item-row griddy">
+              <div class="zm-settings-item-col zm-settings-change-email-col col-sm-8 col-12">
+                <h2 class="zm-subtitle zm-settings-item-headline" translate="settings.account.label.change_username">Change Username</h2>
+                <label class="zm-label zm-settings-item-label">{{ account.get('userName') }}</label>
+                <div class="zm-settings-item-fields">
+                  <form class="zm-form" novalidate name="FormUsernameSettings">
+                    <div class="zm-input-group">
+                      <input type="text" name="accountUsername" id="accountUsername" placeholder="{{'settings.account.placeholder.new_username' | translate}}" autofocus="autofocus" class="zm-form-input" aria-required="true" aria-invalid="false"
+                          required="required" ng-model="settingsCtrl.data.formUsername.username">
+
+                    </div>
+                    <div class="errors">
+                      <div class="row help-block zm-red-text text-sm" ng-show="FormUsernameSettings.accountUsername.$error.pattern || FormUsernameSettings.accountUsername.$error.required" translate="account.settings.validation.username_invalid">
+                        Usernames should contain at least 6 characters. Allowed are letters (a-z, A-Z), numbers (0-9), dashes (-), underscores (_), and points (.). Set your nickname!
+                      </div>
+                      <div class="row help-block zm-red-text text-sm" ng-show="!FormUsernameSettings.accountUsername.$prisitne && FormUsernameSettings.accountUsername.$error.existing"
+                         translate="account.settings.validation.username_inuse">
+                        Please choose another username. Maybe add a number.
+                      </div>
+                    </div>
+                    <div class="zm-input-group" data-children-count="2">
+                      <input type="password" tabindex="-1" class="hidden-on-screen">
+                      <input type="password" name="accountPasswordUsername" placeholder="{{'account.settings.placeholder.current_password' | translate}}"
+                          class="zm-form-input" aria-required="true" aria-invalid="false" ng-model="settingsCtrl.data.formUsername.password">
+
+                    </div>
+                    <div class="errors">
+                      <div class="help-block zm-red-text text-sm" ng-show="FormUsernameSettings.accountPasswordUsername.$touched && FormUsernameSettings.accountPasswordUsername.$error.valid" translate="account.settings.validation.current_invalid">
+                        Current password or PUK is invalid.
+                      </div>
+                    </div>
+                    <button type="submit" disabled="disabled" class="zm-form-btn-submit small zm-settings-item-btn" ng-click="settingsCtrl.saveUsername(settingsCtrl.data,FormUsernameSettings)"
+                        ng-disabled=" !(FormUsernameSettings.accountUsername.$dirty && FormUsernameSettings.accountPasswordUsername.$dirty) || FormUsernameSettings.$invalid"
+                        translate="account.settings.button.save"><span>SAVE</span></button>
+                  </form>
+                  <!---->
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="zm-settings-item zm-settings-item zm-settings-change-email">
+        <header class="zm-settings-item-header">
+
+          <div class="zm-settings-item-header-column"><span class="zm-settings-item-header-label" translate="account.settings.label.email">E-mail</span></div>
+          <div class="zm-settings-item-header-column" ng-if="!settingsCtrl.editForm.email"><span class="zm-settings-item-header-description d-none d-sm-block">{{ account.get('userEmail') }}</span><a href="" class="zm-settings-item-header-link" ng-click="settingsCtrl.showForm('email')" translate="buttons.edit">EDIT</a></div>
+        </header>
+        <!---->
+
+        <div class="zm-settings-item-body-wrapper" ng-class="{'show': settingsCtrl.editForm.email}">
+          <div class="zm-settings-item-body">
+            <!---->
+            <a class="zm-settings-item-body-close"><img src="https://crm-cdn.zenguard.biz/crm/file_1539956792926.svg" ng-click="settingsCtrl.showForm('email')" class="icon-close"></a>
+            <div class="zm-settings-item-row griddy">
+              <div class="zm-settings-item-col zm-settings-change-email-col col-sm-8 col-12">
+                <h2 class="zm-subtitle zm-settings-item-headline" translate="settings.account.label.change_email">Change Email</h2>
+                <label class="zm-label zm-settings-item-label">{{ account.get('userEmail') }}</label>
+                <div class="zm-settings-item-fields">
+                  <form class="zm-form" novalidate name="FormEmailSettings">
+                    <div class="zm-input-group">
+                      <input type="email" name="accountEmail" id="accountEmail" placeholder="{{'settings.account.placeholder.new_email' | translate}}" autofocus="autofocus" class="zm-form-input" aria-required="true" aria-invalid="false"
+                          required="required" ng-pattern='/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'
+                          ng-model="settingsCtrl.data.formEmail.email"
+                      >
+
+                    </div>
+                    <div class="errors">
+                      <div class="row help-block zm-red-text text-sm" ng-show="FormEmailSettings.accountEmail.$error.pattern || FormEmailSettings.accountEmail.$error.required"
+                         translate="account.settings.validation.email_invalid">
+                        E-mail is invalid.
+                      </div>
+                      <div class="row help-block zm-red-text text-sm" ng-show="!FormEmailSettings.accountEmail.$prisitne && FormEmailSettings.accountEmail.$error.existing"
+                         translate="account.settings.validation.email_inuse">
+                        Email is in use. Please try another one.
+                      </div>
+                    </div>
+                    <div class="zm-input-group" data-children-count="2">
+                      <input type="password" tabindex="-1" class="hidden-on-screen">
+                      <input type="password" name="accountPassword" placeholder="{{'account.settings.placeholder.current_password' | translate}}"
+                          class="zm-form-input" aria-required="true" aria-invalid="false" ng-model="settingsCtrl.data.formEmail.password">
+
+                    </div>
+                    <div class="errors">
+                      <div class="help-block zm-red-text text-sm" ng-show="FormEmailSettings.accountPassword.$touched && FormEmailSettings.accountPassword.$error.valid"
+                         translate="account.settings.validation.current_invalid">
+                        Current password or PUK is invalid.
+                      </div>
+                    </div>
+                    <button type="submit" disabled="disabled" class="zm-form-btn-submit zm-settings-item-btn" ng-click="settingsCtrl.saveEmail(settingsCtrl.data,FormEmailSettings)"
+                        ng-disabled=" !(FormEmailSettings.accountEmail.$dirty && FormEmailSettings.accountPassword.$dirty) || FormEmailSettings.$invalid"
+                        translate="account.settings.button.save"><span>SAVE</span></button>
+                  </form>
+                  <!---->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="zm-settings-item zm-settings-item zm-settings-change-email">
+        <header class="zm-settings-item-header">
+          <div class="zm-settings-item-header-column"><span class="zm-settings-item-header-label" translate="account.settings.label.password">Password</span></div>
+          <div class="zm-settings-item-header-column" ng-if="!settingsCtrl.editForm.password"><span class="zm-settings-item-header-description d-none d-sm-block">*******</span><a href="" class="zm-settings-item-header-link" ng-click="settingsCtrl.showForm('password')" translate="buttons.edit">EDIT</a></div>
+        </header>
+        <!---->
+        <div class="zm-settings-item-body-wrapper" ng-class="{'show': settingsCtrl.editForm.password}">
+          <div class="zm-settings-item-body">
+            <!---->
+            <a class="zm-settings-item-body-close"><img src="https://crm-cdn.zenguard.biz/crm/file_1539956792926.svg" ng-click="settingsCtrl.showForm('password')" class="icon-close"></a>
+            <div class="zm-settings-item-row">
+              <div class="zm-settings-item-col zm-settings-change-email-col col-sm-8 col-12">
+                <h2 class="zm-subtitle zm-settings-item-headline" translate="settings.account.label.change_password">Change Password</h2>
+                <div class="zm-settings-item-fields">
+                  <form class="zm-form" novalidate name="FormPasswordSettings">
+                    <div class="zm-input-group">
+                      <input type="password" name="accountPasswordNew" id="accountPasswordNew" placeholder="{{'account.password.placeholder.new_password' | translate}}" autofocus="autofocus" class="zm-form-input" aria-required="true" aria-invalid="false" ng-model="settingsCtrl.data.formPassword.password_new">
+                    </div>
+                    <div class="help-block text-sm ng-cloak zm-red-text" ng-show="accountPasswordModalCtrl.data.password_new && accountPasswordModalCtrl.data.password_new.length && accountPasswordModalCtrl.data.quality <=3" translate="account.password.validation.password">
+                      Passwort muss mindestens 6 Zeichen enthalten, erlaubt sind Buchstaben (a-z, A-Z) und Zahlen (0-9).
+                    </div>
+                    <div class="mt-sm mb-sm ng-cloak" ng-show="settingsCtrl.data.formPassword.password_new && settingsCtrl.data.formPassword.password_new.length">
+                      <div>
+                        <span class="passQuality" translate="signup.label.password_quality">Passwort-Qualität</span>
+                        <span class="passQuality level ng-cloak" translate="{{settingsCtrl.getPasswordQualityDescription(settingsCtrl.data.formPassword.quality)}}">{{settingsCtrl.getPasswordQualityDescription(settingsCtrl.data.formPassword.quality)}}</span>
+                      </div>
+                      <div class="passQuality progress ng-cloak" style="margin: auto; box-sizing: border-box">
+                        <div class="progress-bar" ng-class="{'progress-bar-danger': settingsCtrl.data.formPassword.quality < 2, 'progress-bar-warning': settingsCtrl.data.formPassword.quality < 3, 'progress-bar-info': settingsCtrl.data.formPassword.quality < 4, 'progress-bar-success': settingsCtrl.data.formPassword.quality >= 4}" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-attr-style="width: {{20 * settingsCtrl.data.formPassword.quality}}%" style="width: 0%"></div>
+                      </div>
+                    </div>
+                    <div class="zm-input-group">
+                      <input type="password" name="accountPasswordRepeat" id="accountPasswordRepeat" class="zm-form-input" compare-to="settingsCtrl.data.formPassword.password_new" aria-required="true" aria-invalid="false" ng-model="settingsCtrl.data.formPassword.password_repeat" placeholder="{{'account.password.placeholder.repeat_password' | translate}}">
+                      <div class="help-block zm-red-text text-sm" ng-show="FormPasswordSettings.accountPasswordRepeat.$error.compareTo" translate="account.password.validation.not_same">
+                        Passwörter sind nicht identisch.
+                      </div>
+                    </div>
+                    <div class="zm-input-group" data-children-count="2">
+                      <input type="password" tabindex="-1" class="hidden-on-screen">
+                      <input type="password" name="accountPassword" placeholder="{{'account.settings.placeholder.current_password' | translate}}"
+                          class="zm-form-input" aria-required="true" aria-invalid="false" ng-model="settingsCtrl.data.formPassword.password">
+
+                    </div>
+                    <div class="errors">
+                      <div class="help-block zm-red-text text-sm" ng-show="FormPasswordSettings.accountPassword.$touched && FormPasswordSettings.accountPassword.$error.valid" translate="account.settings.validation.current_invalid">
+                        Current password or PUK is invalid.
+                      </div>
+                    </div>
+                    <button type="submit" disabled="disabled" class="zm-form-btn-submit zm-settings-item-btn" ng-click="settingsCtrl.changePassword(settingsCtrl.data,FormPasswordSettings)"
+                        ng-disabled="(FormAccountPassword.$invalid || !settingsCtrl.data.formPassword.password.length || !settingsCtrl.validatePassword(settingsCtrl.data.formPassword.password_new) ||
+                        settingsCtrl.data.formPassword.password_new !== settingsCtrl.data.formPassword.password_repeat || settingsCtrl.data.formPassword.quality<=3) || (settingsCtrl.data.formPassword.password===settingsCtrl.data.formPassword.password_new)"
+                        translate="account.settings.button.save"><span>SAVE</span></button>
+                  </form>
+                  <!---->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="zm-settings-item zm-settings-item zm-settings-devices">
+        <header class="zm-settings-item-header">
+          <div class="zm-settings-item-header-column"><span class="zm-settings-item-header-label" translate="devices.title">Devices</span></div>
+          <div class="zm-settings-item-header-column">
+            <span class="zm-settings-item-header-description d-none d-sm-block"
+               translate="settings.account.label.active_devices" translate-interpolation="messageformat" translate-values="{ current: +account.get('deviceCount')}"
+          > You are logged in on {{account.get('deviceCount')}} devices</span> <a class="zm-settings-item-header-link" ui-sref="app.devices" translate="buttons.view">View</a></div>
+        </header>
+
+      </div>
+      <div class="zm-settings-item zm-settings-item zm-settings-devices">
+        <header class="zm-settings-item-header">
+          <div class="zm-settings-item-header-column"><span class="zm-settings-item-header-label" translate="account.deletion.link.delete_account">Delete account</span></div>
+          <div class="zm-settings-item-header-column"><a href="" class="zm-settings-item-header-link" translate="buttons.delete" ng-click="settingsCtrl.showAccountDeleteModal()">DELETE</a></div>
+        </header>
+
+      </div>
+    </div>
+  </div>
+  <div class="zm-settings-block">
+    <h2 class="zm-settings-block-headline" translate="settings.payment.title">Payment</h2>
+    <div class="zm-settings-block-inner">
+      <div class="zm-settings-item zm-settings-item zm-settings-change-email">
+        <header class="zm-settings-item-header">
+          <div class="zm-settings-item-header-column"><span class="zm-settings-item-header-label" translate="settings.payment.plan_type">Plan type</span></div>
+          <div class="zm-settings-item-header-column"><span class="zm-settings-item-header-description">
+            <span class="text-bold" ng-if="account.getActiveProduct().displayName" title="{{account.getActiveProduct().displayName}}">
+                {{account.getActiveProduct().displayName}}
+              </span>
+          </span><a class="zm-settings-item-header-link" ui-sref="app.subscriptions.list" translate="buttons.view">View</a></div>
+        </header>
+        <header class="zm-settings-item-header" ng-if="false && account.getLastActiveBilling().cbPaymentType">
+          <div class="zm-settings-item-header-column"><span class="zm-settings-item-header-label" translate="settings.payment.plan_method">Payment Method</span></div>
+          <div class="zm-settings-item-header-column"><span class="zm-settings-item-header-description">
+          <span class="text-bold" title="{{account.getLastActiveBilling().cbPaymentType}}">
+                {{account.getLastActiveBilling().cbPaymentType}}
+              </span>
+          </span><a class="zm-settings-item-header-link" ng-href="{{account.getLastActiveBilling().cbPaymentURL}}" target="_blank" translate="buttons.view">View</a></div>
+        </header>
+        <!---->
+      </div>
+    </div>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/upgrades/modal/failed_tmp.tpl.html"><div class="modal-header">
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title cg-darkgray-text" translate="upgrades.failed.title">Upgrade failed</h4>
+</div>
+<div class="modal-body" style="min-height: 140px">
+  <div class="text-center">
+    <h2 class="title" translate="upgrades.failed.headline">Don't panic!</h2>
+    <p class="cg-red-text text-center" translate="upgrades.failed.subline">
+      Your <strong>{{upgradeFailedCtrl.upgrade.newProduct.displayName}}</strong> upgrade failed.
+    </p>
+    <img src="/assets/img/logos/zm_logo.svg" class="img-responsive">
+  </div>
+  <p class="cg-darkgrey-text text-center">
+    Please visit the shop to complete your purchase.
+  </p>
+  <p class="cg-darkgrey-text text-center mt-md mb-md">
+    <i class="fa fa-external-link"></i> <a ng-href="{{upgradeFailedCtrl.upgrade.purchaseURL}}" target="_blank">{{upgradeFailedCtrl.upgrade.purchaseURL}}</a>
+  </p>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons">
+    <button type="button" class="cg-line-btn cg-line-btn-sm green mr-none mb-md" ng-click="upgradeFailedCtrl.save(upgradeFailedCtrl.upgrade)"><i class="fa fa-cart"></i> <span translate="upgrades.failed.button.addtocart">Add to Cart</span></button>
+    <button type="button" class="cg-line-btn cg-line-btn-sm cg-darkgray mr-none mb-md" ng-click="upgradeFailedCtrl.close()" translate="upgrades.failed.button.close">Close</button>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/upgrades/modal/preview.tpl.html"><div class="modal-header">
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title cg-darkgray-text">
+    <span translate="upgrades.preview.title">Upgrade preview</span><br>
+    <span ng-if="!accountAutoCreatedModalCtrl.success" class="subtitle" translate="account.autocreated.subtitle">Complete your Account</span>
+    <span ng-if="accountAutoCreatedModalCtrl.success" class="subtitle" translate="account.autocreated.success.subtitle">Account has been completed</span>
+  </h4>
+</div>
+<div class="modal-body" style="min-height: 140px">
+  <div class="text-center">
+    <img src="/assets/img/logos/zm_logo.svg" class="img-responsive">
+  </div>
+  <div class="text-center mb-md">
+    <h3 class="title" translate="upgrades.preview.headline">You are about to buy a new subscription to</h3>
+    <h3 class="title cg-darkgrey-text text-center mb-md">
+      {{upgradePreviewCtrl.upgrade.newProduct.displayName}}
+    </h3>
+    <div class="mb-md">
+      <span class="text-light text-uppercase" translate="upgrades.preview.label.next_billing_date">Next billing date</span><br>
+      <span class="text-bold" title="{{upgradePreviewCtrl.data.NextBillingDate | amDateFormat:'L'}}">{{upgradePreviewCtrl.data.NextBillingDate | amDateFormat:'L'}}</span>
+    </div>
+    <div class="mb-md">
+      <span class="text-light text-uppercase" translate="upgrades.preview.label.next_billing_amount">Next billing amount</span><br>
+      <price class="text-bold" data="upgradePreviewCtrl.data.NextBillingCustomerGrossPrice" currency="upgradePreviewCtrl.data.PriceCurrencyId"></price>
+    </div>
+  </div>
+  <p class="cg-darkgrey-text text-center" translate="upgrades.preview.description">
+    Click the button to complete your purchase.
+  </p>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons text-center">
+    <button type="button" class="cg-line-btn cg-line-btn-sm green mr-none mb-md" ng-click="upgradePreviewCtrl.save(upgradePreviewCtrl.upgrade)"><i class="fa fa-check"></i> <span translate="upgrades.preview.button.complete">Complete purchase</span></button>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/upgrades/modal/failed.tpl.html"><div class="modal-header">
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body" style="min-height: 140px">
+  <div class="text-center">
+    <img src="/assets/img/logos/zm_logo.svg" class="img-responsive">
+  </div>
+  <p class="cg-darkgrey-text text-center" translate="upgrades.failed.description">
+    Click the button to continue your purchase at the Cleverbridge Store.
+  </p>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons text-center">
+    <button type="button" class="cg-line-btn cg-line-btn-sm green mr-none mb-md" ng-click="upgradeFailedCtrl.save(upgradeFailedCtrl.upgrade)"><i class="fa fa-shopping-cart"></i> <span translate="upgrades.failed.button.continue">Continue</span></button>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/upgrades/store/upgrades-store.tpl.html">
+<!-- Upgrade Panel -->
+<div class="page-content">
+  <div class="section-icon">
+    <img src="/assets/img/icons/icon_star_yellow.png" alt="Icon" />
+  </div>
+  <h3 class="title" translate="upgrades.title">Upgrade</h3>
+  <div class="section-content">
+    <div class="mb-md">
+      <a href ui-sref="app.upgrades" class="cg-line-btn cg-line-btn-sm cg-darkgray cg-darkgray-text m-none">
+        <i class="fa fa-arrow-left"></i> <span translate="subscriptions.button.back">Back to overview</span>
+      </a>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <iframe id="storeFrame" onload="storeLoaded(this)" ng-if="upgradesStoreCtrl.storeUrl" src="{{upgradesStoreCtrl.storeUrl}}" frameborder="0" scrolling="no" style="width: 100%; max-width: 760px; min-height: 200px; overflow: visible;"></iframe>
+      </div>
+    </div>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/upgrades/upgrades.tpl.html">
+<!-- Upgrade Panel -->
+<div class="page-content">
+  <div class="section-icon">
+    <img src="/assets/img/icons/icon_star_yellow.png" alt="Icon" />
+  </div>
+  <h3 class="title" translate="upgrades.title">Upgrade</h3>
+  <div class="section-content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="descriptive">
+          <div translate="upgrades.headline" translate-interpolation="messageformat" translate-values="{ product: account.getActiveProductName() }">
+            You are Zenmate VPN <strong>Free</strong> user.
+          </div>
+          <div translate="upgrades.description">This is the recommended upgrade for your current subscription plan:</div>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="plans">
+      <div class="plan row mb-md" ng-repeat="upgrade in upgradesCtrl.upgrades track by $index">
+        <div class="col-xs-12 col-md-12 col-lg-6 m-none p-none">
+          <div class="plan-tile m-none" ng-if="upgrade">
+            <div class="plan-tile-background">
+              <h2 class="plan-name">{{upgrade.id}} - {{upgrade.newProduct.displayName}}</h2>
+              <div class="plan-price">
+                <span class="plan-price-regular" ng-if="upgrade.promotion">
+                  <span ng-if="upgrade.promotion.price">{{upgrade.promotion.price[currency] | number}} {{currencySymbol}}</span>
+                  <span ng-if="upgrade.promotion.discount_percentage">{{upgrade.promotion.discount_percentage*upgrade.newProduct.price[currency] | number}} {{currencySymbol}}</span>
+                </span>
+                <span class="plan-price-discount">
+                  {{upgrade.newProduct.price[currency] | number}} {{currencySymbol}}
+                </span>
+              </div>
+              <div class="plan-features">
+                <div class="plan-billing">
+                  <h5 translate="upgrades.label.payment">Payment</h5>
+                  <span ng-if="upgrade.newProduct.recurring && +upgrade.newProduct.runtime==1" translate="upgrades.payment.monthly">monthly</span>
+                  <span ng-if="upgrade.newProduct.recurring && +upgrade.newProduct.runtime==12" translate="upgrades.payment.yearly">yearly</span>
+                  <span ng-if="!upgrade.newProduct.recurring" translate="upgrades.payment.prepaid">prepaid</span>
+                </div>
+                <div class="plan-runtime">
+                  <h5 translate="upgrades.label.runtime">Runtime</h5>
+                  <span ng-if="upgrade.newProduct.runtime" translate="subscriptions.duration.months" translate-interpolation="messageformat" translate-values="{ number: +upgrade.newProduct.runtime }">month(s)</span>
+                  <span ng-if="upgrade.newProduct.runtimeDays" translate="subscriptions.duration.days" translate-interpolation="messageformat" translate-values="{ number: +upgrade.newProduct.runtimeDays }">day(s)</span>
+                </div>
+                <div class="plan-devices">
+                  <h5 translate="upgrades.label.devices">Devices</h5>
+                  <span ng-if="upgrade.newProduct.plan.maxDevices" translate="upgrades.devices" translate-interpolation="messageformat" translate-values="{ number: +upgrade.newProduct.plan.maxDevices }">device(s)</span>
+                </div>
+              </div>
+            </div>
+            <!--<div class="plan-actions">-->
+              <!--<button type="button" class="zm-btn small green" ng-if="!!upgrade.requiresCart" ng-click="upgradesCtrl.purchaseUpgrade(upgrade)"><i class="fa fa-shopping-cart"></i> <span translate="upgrades.button.shoppingcart">Add to cart</span></button>-->
+              <!--<button type="button" class="zm-btn small green" ng-if="!upgrade.requiresCart" ng-click="upgradesCtrl.purchaseUpgrade(upgrade)"><i class="fa fa-check"></i> <span translate="upgrades.button.order">Order now</span></button>-->
+            <!--</div>-->
+
+            <div class="plan-actions">
+              <a href ui-sref="app.store({upgrade: upgrade})" class="zm-btn small green"><i class="fa fa-shopping-cart"></i> <span translate="upgrades.button.order">Order now</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-12 col-lg-6">
+          <div class="plan-description" ng-bind-html="upgrade.newProduct.description"></div>
+        </div>
+      </div>
+    </div>
+    <div ng-if="!upgradesCtrl.upgrades.length && !upgradesCtrl.error">
+      <div class="mt-lg text-center">
+        <loading animate="true" img-width="100" spinner="true" image="/assets/img/logo_zm.png" text="{{'upgrades.searching' | translate}}" dots="3" active="upgradesCtrl.active" reset="upgradesCtrl.reset"></loading>
+      </div>
+    </div>
+    <div ng-if="upgradesCtrl.error">
+      <div class="mt-lg text-center">
+        <strong>Error</strong>
+      </div>
+    </div>
+  </div> <!-- /section-content -->
+</div></script><script type="text/ng-template" id="app/modules/errors/errors.tpl.html"><!-- Error Page -->
+<div class="text-center">
+  <h1>{{errorCtrl.code}}</h1>
+  <h4>{{errorCtrl.message}}</h4>
+</div>
+</script><script type="text/ng-template" id="app/modules/dedicated-ips/dedicated-ips.tpl.html"><!-- My Devices Panel -->
+<div class="page-content">
+  <div class="section-header">
+    <div class="section-icon">
+      <img src="assets/img/icons/IP_yellow.png" alt="Icon" />
+    </div>
+    <h3 class="title" translate="dedicated-ips.title">Dedicated IPs</h3>
+  </div>
+  <div class="section-content support-content">
+
+    <!--{{ privateIpsCtrl.dedicatedIps | json }}-->
+    <div class="table-responsive col-md-6">
+      <table class="table " ng-if="privateIpsCtrl.dedicatedIps.length>0">
+
+          <tr>
+            <td width="50px"><span >#</span></td>
+            <td><span translate="dedicated-ips.ip">IPv4</span></td>
+            <td><span translate="dedicated-ips.city">City</span></td>
+            <td><span translate="dedicated-ips.server">Server</span></td>
+          </tr>
+
+          <tr ng-repeat="privateIp in privateIpsCtrl.dedicatedIps track by $index">
+            <td class="plan-name" width="50px"><span class="text-bold">{{$index+1}}</span></td>
+            <td class="plan-name"><span class="text-bold">{{privateIp.ipv4}}</span></td>
+            <td class="plan-name"><span class="text-bold">{{privateIp.city}}</span></td>
+            <td class="plan-name"><span class="text-bold">{{privateIp.displayName}}</span></td>
+          </tr>
+
+      </table>
+    </div>
+
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/login-device/login-device.tpl.html"><div class="zm-subheader">
+  <h2 class="zm-subheader-title" translate="login.device.title">Login device</h2>
+  <!--<span class="pull-right"><a href class="btn btn-default hvr-icon-rotate" ng-click="subscriptionsListCtrl.refresh()" ng-disabled="accountCtrl.isRefreshing"><i class="fa fa-refresh hvr-icon"></i> Refresh</a> </span>-->
+</div>
+<div class="zm-default-container login-device-content">
+
+  <div class="section-content">
+    <form class="mt-lg mb-lg" name="FormLoginDevice" id="FormLoginDevice" autocomplete="off">
+      <!--<span translate="serial.activation.title">I already have an activation key:</span><br>-->
+      <div class="login-device-instruction">
+        <ol>
+          <li><p translate="login.device.instructions.0">Open the Zenmate app on your TV.</p></li>
+          <li><p translate="login.device.instructions.1">Click on the sign in button and log into your Zenmate account. </p></li>
+          <li><p translate="login.device.instructions.2">You’ll see a code displayed on your TV. </p></li>
+          <li><p translate="login.device.instructions.3">Please enter the code displayed on your TV in the field below</p></li>
+        </ol>
+      </div>
+      <div class="messages" style="width: 250px">
+        <div class="message animated fadeIn alert alert-danger m-none mt-sm" ng-show="loginDeviceCtrl.data.error" translate="login.device.error.message">The code is invalid.</div>
+        <div class="message animated fadeIn alert alert-success m-none mt-sm" ng-show="loginDeviceCtrl.data.success" translate="login.device.success.message">You're log in is valid.</div>
+      </div>
+
+      <input type="text" name="serial" class="zm-form-input cg-textfield zm-code-app cg-textfield-sm no-margin-left textfield-activate-key" ng-keyup="loginDeviceCtrl.checkLength($event)" ng-model="loginDeviceCtrl.data.code" placeholder="____" autocomplete="activation code">
+      <div class="pt-sm">
+        <button class="zm-btn blue mx-auto" ng-disabled="!loginDeviceCtrl.data.code.length || !loginDeviceCtrl.isValidCode(loginDeviceCtrl.data.code)" ng-click="loginDeviceCtrl.activateCode(loginDeviceCtrl.data.code)" translate="login.device.button-next">Next</button>
+      </div>
+    </form>
+
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/refer-a-friend/refer-a-friend.tpl.html">
+<!-- Content Panels -->
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <!-- Support Panel -->
+  <div id="nav-content-support" class="page-content">
+    <div class="section-icon">
+      <img src="assets/img/icons/icon_chat_yellow.png" alt="Icon" />
+    </div>
+    <h3 class="title" translate="support.title">Support</h3>
+    <div class="section-content support-content">
+
+      <div class="support-box">
+        <h4 translate="support.faq.title">Read our FAQ</h4>
+        <div class="description-cell">
+          <p class="descriptive" translate="support.faq.content">
+            Our Frequently Asked Questions provide you with answers for the most common problems.
+          </p>
+        </div>
+        <div class="button-cell">
+          <button class="cg-line-btn cg-line-btn-sm cg-darkgray no-margin-left" translate="support.faq.button.read_faq">Read FAQ</button>
+        </div>
+      </div>
+
+      <!-- Free Support (Upgrade) -->
+      <div class="support-box">
+        <h4 translate="support.upgrade.title">Premium Support</h4>
+        <div class="description-cell">
+          <p class="descriptive" translate="support.upgrade.content">
+            Unfortunately your subscription type does not include access to our ticket support. Upgrade to Premium to get additional support options.
+          </p>
+        </div>
+        <div class="button-cell">
+          <button class="action-upgrade zm-btn small green no-margin-left" translate="support.upgrade.button.upgrade">Upgrade</button>
+        </div>
+      </div>
+
+      <!-- Premium Support (Upgrade) -->
+      <div class="support-box">
+        <h4 translate="support.premium.title">Contact Support</h4>
+        <div class="description-cell">
+          <p class="descriptive" translate="support.premium.content">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+        <div class="button-cell">
+          <button class="zm-btn small cg-darkgray no-margin-left" translate="support.premium.button.contact">Contact Us</button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/subscriptions/details/modal/renewal-change.tpl.html"><div class="modal-header">
+  <h4 class="modal-title zm-darkgray-text" translate="subscriptions.renewal.title">Automatische Verlängerung</h4>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="$dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body text-center">
+
+
+  <div class="text-center animated fadeIn">
+    <div ng-if="!subscriptionRenewalChangeCtrl.renewalActive">
+      <p translate="subscriptions.renewal.label.activate" style="width: 80%">
+        Soll die automatische Verlängerung des Abonnements aktiviert werden?
+      </p>
+    </div>
+
+    <div ng-if="subscriptionRenewalChangeCtrl.renewalActive">
+      <p translate="subscriptions.renewal.label.deactivate" style="width: 80%">
+        Soll die automatische Verlängerung des Abonnements deaktiviert werden?
+      </p>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons">
+    <button type="button" class="zm-btn green mr-sm" ng-if="!subscriptionRenewalChangeCtrl.renewalActive" ng-click="subscriptionRenewalChangeCtrl.save(true)" translate="subscriptions.renewal.button.activate">Activate renewal</button>
+    <button type="button" class="zm-btn red mr-sm" ng-if="subscriptionRenewalChangeCtrl.renewalActive" ng-click="subscriptionRenewalChangeCtrl.save(false)" translate="subscriptions.renewal.button.deactivate">Deactivate renewal</button>
+    <button type="button" class="zm-btn small" ng-click="subscriptionRenewalChangeCtrl.close()" translate="subscriptions.renewal.button.cancel">Cancel</button>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/subscriptions/details/modal/payment-details.tpl.html"><div class="modal-header">
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title cg-darkgray-text" translate="subscription.paymentdetails.title">Zahlungsoptionen</h4>
+</div>
+<div class="modal-body text-center">
+
+  <p class="text-light">
+    Just download the Zenmate VPN app and log in with your username and password.
+  </p>
+  <h4 class="text-light">Download Zenmate</h4>
+  <div class="text-center">
+    TEST
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons">
+    <button type="button" class="cg-line-btn cg-line-btn-sm cg-darkgray mr-none mb-md" ng-click="subscriptionPaymentDetailsCtrl.close()" translate="subscription.paymentdetails.button.cancel">Cancel</button>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/subscriptions/details/modal/billing-history.tpl.html"><div class="modal-header">
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title cg-darkgray-text" translate="subscriptions.billinghistory.title">Billing history</h4>
+</div>
+<div class="modal-body" style="min-height: 140px">
+  <!--<pre>-->
+    <!--{{subscriptionBillingHistoryCtrl.billings | json}}-->
+  <!--</pre>-->
+  <div class="table-responsive" ng-if="subscriptionBillingHistoryCtrl.billings.length">
+    <table class="table mb-md" style="width: 80%; margin: auto;">
+      <tr ng-repeat="billing in subscriptionBillingHistoryCtrl.billings track by $index">
+        <td>
+          <div class="text-bold">{{billing.startDate | amDateFormat:'L'}}</div>
+          <div ng-if="subscriptionBillingHistoryCtrl.getBillingTime(billing.startDate)">{{ billing.startDate | amDateFormat:'HH:mm'}}</div>
+        </td>
+        <td style="word-break: normal; white-space: normal">
+          <span title="{{billing.product.displayname}}">{{billing.product.displayname}}</span>
+        </td>
+        <td>
+          <span translate="subscriptions.billinghistory.label.reference_number">Referencenumber</span><br>
+          <strong ng-if="billing.cbOrderId">{{billing.cbOrderId}}</strong>
+          <strong ng-if="billing.stripeOrderId">{{billing.stripeOrderId}}</strong>
+          <strong ng-if="billing.bitpayOrderId">{{billing.bitpayOrderId}}</strong>
+          <strong ng-if="billing.googleOrderId">{{billing.googleOrderId}}</strong>
+        </td><td>
+          <div>
+            <span><i class="{{subscriptionBillingHistoryCtrl.getPaymentStatusIconClass(billing.paymentStatus)}}"></i></span>
+            <span translate="{{subscriptionBillingHistoryCtrl.getPaymentStatusText(billing.paymentStatus)}}"></span>
+            <span ng-if="billing.cbPaymentType && billing.cbPaymentType.length">({{billing.cbPaymentType}})</span>
+          </div>
+        </td>
+        <td class="text-right"> <span>{{subscriptionBillingHistoryCtrl.subscription.additionalOrderInformation.price}} {{subscriptionBillingHistoryCtrl.subscription.additionalOrderInformation.currency}}</span></td>
+        <td>
+          <a ng-if="billing.hasInvoice && !billing.cbOrderId" href ng-click="subscriptionBillingHistoryCtrl.resendEmail(billing.id)" title="Resend Invoice">
+            <span ><i class="fa fa-mail-forward"></i></span>
+            <!--translate="subscriptions.label.resend"-->
+          </a>
+        </td>
+        <td>
+          <a ng-if="billing.hasInvoice && !billing.cbOrderId" href ng-click="subscriptionBillingHistoryCtrl.downloadInvoice(billing.id)" title="Download Invoice">
+            <span><i class="fa fa-download"></i></span>
+          </a>
+        </td>
+        <td>
+          <a ng-if="billing.hasInvoice && billing.cbOrderId && billing.cbInvoiceLink" href="{{billing.cbInvoiceLink[0]}}" target="_blank" title="Download Invoice">
+            <span><i class="fa fa-download"></i></span>
+          </a>
+        </td>
+      </tr>
+    </table>
+    <div class="text-center">
+      <button type="button" class="cg-line-btn cg-line-btn-sm cg-darkgray mr-none mb-md" ng-hide="!subscriptionBillingHistoryCtrl.hasLoadMore" ng-click="subscriptionBillingHistoryCtrl.loadMore()" translate="subscriptions.billinghistory.button.load_more">Load more billings</button>
+    </div>
+  </div>
+  <div class="text-center" style="line-height: 140px;" ng-if="!subscriptionBillingHistoryCtrl.billings">
+    <i class="fa fa-spinner fa-spin fa-4x"></i>
+    <p class="text-center" translate="subscriptions.billinghistory.label.loading">Looking for billings...</p>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons">
+    <button type="button" class="cg-line-btn cg-line-btn-sm cg-darkgray mr-none mb-md" ng-click="subscriptionBillingHistoryCtrl.close()" translate="subscriptions.billinghistory.button.close">Close</button>
+  </div>
+</div></script><script type="text/ng-template" id="app/modules/subscriptions/details/details.tpl.html">
+
+<div class="zm-subheader">
+  <h2 class="zm-subheader-title" translate="subscriptions.title">My Subscription</h2>
+  <div>
+    <a href ui-sref="app.subscriptions.list" class="cg-line-btn cg-line-btn-sm cg-darkgray cg-darkgray-text m-none">
+      <i class="fa fa-arrow-left"></i> <span translate="subscriptions.button.back">Back to overview</span>
+    </a>
+  </div>
+  <!--<span class="pull-right"><a href class="btn btn-default hvr-icon-rotate" ng-click="subscriptionsListCtrl.refresh()" ng-disabled="accountCtrl.isRefreshing"><i class="fa fa-refresh hvr-icon"></i> Refresh</a> </span>-->
+</div>
+<div class="zm-default-container">
+  <div class="section-content">
+
+
+    <div class="subscription-details" ng-if="subscriptionDetailsCtrl.subscription">
+      <h3><span translate="subscriptions.label.subscription">Subscription</span> ({{subscriptionDetailsCtrl.subscription.id}})</h3>
+      <div>
+        <table class="table vertical-center">
+          <tr>
+            <td class="text-light" translate="subscriptions.label.status">Status</td>
+            <td>
+              <strong ng-if="+subscriptionDetailsCtrl.subscription.active && subscriptionDetailsCtrl.subscription.lastValidBilling.active" translate="subscriptions.label.active">Activ</strong>
+              <strong ng-if="subscriptionDetailsCtrl.subscription.lastValidBilling.paymentStatus == 0 && (!+subscriptionDetailsCtrl.subscription.active || !subscriptionDetailsCtrl.subscription.lastValidBilling.active)" translate="subscriptions.label.expired">Expired</strong>
+              <strong ng-if="subscriptionDetailsCtrl.subscription.lastValidBilling.paymentStatus == 1 && (!+subscriptionDetailsCtrl.subscription.active || !subscriptionDetailsCtrl.subscription.lastValidBilling.active)" translate="subscriptions.label.refunded">Refunded</strong>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-light" translate="subscriptions.label.type">Type</td>
+            <td>
+              <span translate="{{subscriptionDetailsCtrl.getSubscriptionTypeName(subscriptionDetailsCtrl.subscription.type)}}">{{subscriptionDetailsCtrl.getSubscriptionTypeName(subscriptionDetailsCtrl.subscription.type)}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-light" translate="subscriptions.label.startdate">Startdate (activation)</td>
+            <td title="{{subscriptionDetailsCtrl.subscription.createdAt | amDateFormat:'LLL'}}">
+              <span class="d-none d-md-block">{{subscriptionDetailsCtrl.subscription.createdAt | amDateFormat:'LL'}}</span>
+              <span class="d-block d-md-none">{{subscriptionDetailsCtrl.subscription.createdAt | amDateFormat:'L'}}</span>
+            </td>
+          </tr>
+          <tr >
+            <td class="text-light" >
+              <span translate="subscriptions.label.enddate" ng-if="(subscriptionDetailsCtrl.subscription.lastValidBilling.paymentStatus == 1 && (!+subscriptionDetailsCtrl.subscription.active || !subscriptionDetailsCtrl.subscription.lastValidBilling.active)) || !subscriptionDetailsCtrl.subscription.autoRenewalActive || !subscriptionDetailsCtrl.subscription.autoRenewalAvailable">Enddate (renewal)</span>
+              <span translate="subscriptions.label.next_billing"
+                 ng-if="+subscriptionDetailsCtrl.subscription.active &&
+                 subscriptionDetailsCtrl.subscription.lastValidBilling.active &&
+                 subscriptionDetailsCtrl.subscription.lastValidBilling.product.recurring &&
+                 subscriptionDetailsCtrl.subscription.autoRenewalActive &&
+                 subscriptionDetailsCtrl.subscription.autoRenewalAvailable">Next billing</span>
+            </td>
+            <td ng-if="+subscriptionDetailsCtrl.subscription.active && subscriptionDetailsCtrl.subscription.lastValidBilling.active" title="{{subscriptionDetailsCtrl.subscription.lastValidBilling.endDate | amDateFormat:'LLL'}}">
+              <span class="d-none d-md-block">{{subscriptionDetailsCtrl.subscription.lastValidBilling.endDate | amDateFormat:'LL'}}</span>
+              <span class="d-block d-md-none">{{subscriptionDetailsCtrl.subscription.lastValidBilling.endDate | amDateFormat:'L'}}</span>
+            </td>
+            <td ng-if="(!+subscriptionDetailsCtrl.subscription.active || !subscriptionDetailsCtrl.subscription.lastValidBilling.active) && subscriptionDetailsCtrl.subscription.canceldate" title="{{subscriptionDetailsCtrl.subscription.lastValidBilling.endDate | amDateFormat:'LLL'}}">
+              <span class="d-none d-md-block">{{subscriptionDetailsCtrl.subscription.canceldate | amDateFormat:'LL'}}</span>
+              <span class="d-block d-md-none">{{subscriptionDetailsCtrl.subscription.canceldate | amDateFormat:'L'}}</span>
+            </td>
+            <td ng-if="(!+subscriptionDetailsCtrl.subscription.active || !subscriptionDetailsCtrl.subscription.lastValidBilling.active) && !subscriptionDetailsCtrl.subscription.canceldate" title="{{subscriptionDetailsCtrl.subscription.lastValidBilling.endDate | amDateFormat:'LLL'}}">
+              <span class="d-none d-md-block">{{subscriptionDetailsCtrl.subscription.lastValidBilling.endDate | amDateFormat:'LL'}}</span>
+              <span class="d-block d-md-none">{{subscriptionDetailsCtrl.subscription.lastValidBilling.endDate | amDateFormat:'L'}}</span>
+            </td>
+          </tr>
+          <tr ng-if="+subscriptionDetailsCtrl.subscription.autoRenewalAvailable && +subscriptionDetailsCtrl.subscription.active && subscriptionDetailsCtrl.subscription.lastValidBilling.active">
+            <td class="text-light" translate="subscriptions.label.autorenewal">Automatic renewal</td>
+            <td>
+              <div ng-if="subscriptionDetailsCtrl.subscription.autoRenewalActive">
+                <span class="pull-left d-none d-md-block">
+                  <span translate="subscriptions.label.on">On</span>
+                </span>
+                <span>
+                  <label for="deactivate" class=" d-block d-md-none">
+                     <input type="checkbox" id="deactivate" class="ios-switch bigswitch pull-right d-md-none" ng-model="subscriptionDetailsCtrl.changeRenewalSwitch" ng-change="subscriptionDetailsCtrl.showRenewalChangeModal(subscriptionDetailsCtrl.subscription,true)" />
+                     <div>
+                       <div></div>
+                     </div>
+                  </label>
+
+                  <a href class="pull-right  d-none d-md-block" ng-click="subscriptionDetailsCtrl.showRenewalChangeModal(subscriptionDetailsCtrl.subscription)">
+                    <span translate="subscriptions.label.renewal_deactivate">Deactivate automatic renewal</span>
+                  </a>
+                </span>
+              </div>
+              <div ng-if="!subscriptionDetailsCtrl.subscription.autoRenewalActive">
+                <span class="pull-left d-none d-md-block">
+                  <span translate="subscriptions.label.off">Off</span>
+                </span>
+                <span>
+                  <label for="activate" class=" d-block d-md-none">
+                     <input type="checkbox" id="activate" class=" bigswitch ios-switch pull-right d-md-none" ng-model="subscriptionDetailsCtrl.changeRenewalSwitch" ng-change="subscriptionDetailsCtrl.showRenewalChangeModal(subscriptionDetailsCtrl.subscription,true)"/>
+                     <div>
+                       <div></div>
+                    </div>
+                  </label>
+                  <a href class="pull-right d-none d-md-block" ng-click="subscriptionDetailsCtrl.showRenewalChangeModal(subscriptionDetailsCtrl.subscription)">
+                    <span translate="subscriptions.label.renewal_activate">Activate automatic renewal</span>
+                  </a>
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr ng-if="subscriptionDetailsCtrl.subscription.canceldate===null && subscriptionDetailsCtrl.subscription.lastValidBilling.product.runtime!==999">
+            <td class="text-light" translate="subscriptions.label.runtime">Laufzeit</td>
+            <td>
+
+              <span ng-if="+subscriptionDetailsCtrl.subscription.lastValidBilling.product.runtime" translate="subscriptions.duration.months" translate-interpolation="messageformat" translate-values="{ number: +subscriptionDetailsCtrl.subscription.lastValidBilling.product.runtime }">month(s)</span>
+              <span ng-if="+subscriptionDetailsCtrl.subscription.lastValidBilling.product.runtimeDays" translate="subscriptions.duration.days" translate-interpolation="messageformat" translate-values="{ number: +subscriptionDetailsCtrl.subscription.lastValidBilling.product.runtimeDays }">day(s)</span>
+            </td>
+          </tr>
+
+          <tr ng-if="subscriptionDetailsCtrl.subscription.type !== 102 && subscriptionDetailsCtrl.subscription.type!==127 && subscriptionDetailsCtrl.subscription.type!==2">
+            <td class="text-light" translate="subscriptions.label.price">Gebühr</td>
+            <td>
+              <span>{{ subscriptionDetailsCtrl.getPrice(subscriptionDetailsCtrl.subscription) }}</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <style>
+      .subscription-products {}
+      .subscription-products .product-description ul {
+        list-style: none;
+        padding-left: 0;
+      }
+    </style>
+    <div class="subscription-products" ng-if="subscriptionDetailsCtrl.subscription">
+      <h3 translate="subscriptions.label.product">Product</h3>
+      <div>
+        <table class="table vertical-center">
+          <tr>
+            <td class="text-light hidden-xs" width="300" translate="subscriptions.label.productname">Name</td>
+            <td>
+              <span>{{subscriptionDetailsCtrl.subscription.lastValidBilling.product.displayName}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-light hidden-xs"></td>
+            <td>
+              <div ng-bind-html="subscriptionDetailsCtrl.subscription.lastValidBilling.product.description" class="product-description"></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="subscription-products" ng-if="subscriptionDetailsCtrl.subscription && (subscriptionDetailsCtrl.subscription.type !== 2 && subscriptionDetailsCtrl.subscription.type !== 102 && subscriptionDetailsCtrl.subscription.type!==127)">
+      <h3 translate="subscriptions.billinghistory.title">Billing history</h3>
+      <div class="table-responsive" ng-if="subscriptionDetailsCtrl.billings.length">
+        <table class="table mb-md">
+          <tr ng-repeat="billing in subscriptionDetailsCtrl.billings track by $index">
+            <td>
+              <div class="text-bold">{{billing.startDate | amDateFormat:'L'}}</div>
+              <div ng-if="subscriptionDetailsCtrl.getBillingTime(billing.startDate)">{{ billing.startDate | amDateFormat:'HH:mm'}}</div>
+            </td>
+            <td style="word-break: normal; white-space: normal">
+              <span title="{{billing.product.displayname}}">{{billing.product.displayname}}</span>
+            </td>
+            <td>
+              <span translate="subscriptions.billinghistory.label.reference_number">Referencenumber</span><br>
+              <strong ng-if="billing.cbOrderId">{{billing.cbOrderId}}</strong>
+              <strong ng-if="billing.stripeOrderId">{{billing.stripeOrderId}}</strong>
+              <strong ng-if="billing.bitpayOrderId">{{billing.bitpayOrderId}}</strong>
+              <strong ng-if="billing.googleOrderId">{{billing.googleOrderId}}</strong>
+            </td><td>
+            <div>
+              <span><i class="{{subscriptionDetailsCtrl.getPaymentStatusIconClass(billing.paymentStatus)}}"></i></span>
+              <span translate="{{subscriptionDetailsCtrl.getPaymentStatusText(billing.paymentStatus)}}"></span>
+              <span ng-if="billing.cbPaymentType && billing.cbPaymentType.length">({{billing.cbPaymentType}})</span>
+            </div>
+          </td>
+            <td class="text-right"> <span>{{subscriptionDetailsCtrl.subscription.additionalOrderInformation.price}} {{subscriptionDetailsCtrl.subscription.additionalOrderInformation.currency}}</span></td>
+            <td>
+              <a ng-if="billing.hasInvoice && !billing.cbOrderId" href ng-click="subscriptionDetailsCtrl.resendEmail(billing.id)" title="Resend Invoice">
+                <span ><i class="fa fa-mail-forward"></i></span>
+                <!--translate="subscriptions.label.resend"-->
+              </a>
+            </td>
+            <td>
+              <a ng-if="billing.hasInvoice && !billing.cbOrderId" href ng-click="subscriptionDetailsCtrl.downloadInvoice(billing.id)" title="Download Invoice">
+                <span><i class="fa fa-download"></i></span>
+              </a>
+            </td>
+            <td>
+              <a ng-if="billing.hasInvoice && billing.cbOrderId && billing.cbInvoiceLink" href="{{billing.cbInvoiceLink[0]}}" target="_blank" title="Download Invoice">
+                <span><i class="fa fa-download"></i></span>
+              </a>
+            </td>
+          </tr>
+        </table>
+        <div class="text-center">
+          <button type="button" class="cg-line-btn cg-line-btn-sm cg-darkgray mr-none mb-md" ng-hide="!subscriptionDetailsCtrl.hasLoadMore" ng-click="subscriptionDetailsCtrl.loadMore()" translate="subscriptions.billinghistory.button.load_more">Load more billings</button>
+        </div>
+      </div>
+      <div class="text-center" style="line-height: 140px;" ng-if="!subscriptionDetailsCtrl.billings">
+        <i class="fa fa-spinner fa-spin fa-4x"></i>
+        <p class="text-center" translate="subscriptions.billinghistory.label.loading">Looking for billings...</p>
+      </div>
+    </div>
+  </div> <!-- / section-content -->
+</div></script><script type="text/ng-template" id="app/modules/subscriptions/list/list.tpl.html">
+
+<div class="zm-subheader">
+  <h2 class="zm-subheader-title" translate="subscriptions.title">My Subscriptions</h2>
+  <!--<span class="pull-right"><a href class="btn btn-default hvr-icon-rotate" ng-click="subscriptionsListCtrl.refresh()" ng-disabled="accountCtrl.isRefreshing"><i class="fa fa-refresh hvr-icon"></i> Refresh</a> </span>-->
+</div>
+
+<div class="zm-transactions-container">
+
+  <div class="zm-transactions-list" ng-if="subscriptionsListCtrl.subscriptions.length && !subscriptionsListCtrl.error">
+
+    <div class="row zm-transactions-list-item-top py-3" >
+      <div class="col-md-1 col-2">Status</div>
+      <div class="col-md-3 col-3">DATE</div>
+      <div class="col-md-3 col-5">SERVICE</div>
+      <div class="col-md-2 d-none d-md-block">End date</div>
+      <div class="col-md-2 d-none d-md-block" ng-if="false">PRICE</div>
+      <div class="col-md-2 col-2"></div>
+    </div>
+    <div class="row zm-transactions-list-item py-3" ng-repeat="subscription in subscriptionsListCtrl.subscriptions track by $index">
+      <div class="col-md-1 col-sm-2 col-12">
+        <span class="label label-info text-normal m-none" ng-if="+subscription.active && subscription.lastValidBilling.active" translate="subscriptions.label.active">Active</span>
+        <span class="label label-default text-normal m-none" ng-if="subscription.lastValidBilling.paymentStatus==0 && (!+subscription.active || !+subscription.lastValidBilling.active)" translate="subscriptions.label.inactive">Inactive</span>
+        <span class="label label-default text-normal m-none" ng-if="subscription.lastValidBilling.paymentStatus==1 && (!+subscription.active || !+subscription.lastValidBilling.active)" translate="subscriptions.label.refunded">Refunded</span>
+      </div>
+      <div class="col-md-3 col-sm-4 col-12">{{subscription.createdAt | amDateFormat:'LL'}}</div>
+      <div class="col-md-3 col-sm-5 col-12" title="{{subscription.lastValidBilling.product.displayName || 'Unknown'}}">{{subscription.lastValidBilling.product.displayName || 'Unknown'}}</div>
+      <div class="col-md-2 d-none d-md-block">
+        <span ng-if="!(+subscription.active && subscription.lastValidBilling.active)">{{subscription.canceldate | amDateFormat:'LL'}}</span>
+        <span ng-if="+subscription.active && subscription.lastValidBilling.active">{{subscription.lastValidBilling.endDate | amDateFormat:'LL'}}</span>
+      </div>
+      <div class="col-md-2 d-none d-md-block" ng-if="false">{{ subscriptionsListCtrl.getPrice(subscription) }}</div>
+      <div class="col-md-2 col-sm-1 col-12"><a href ui-sref="app.subscriptions.details({id: subscription.id})" class="subscription" ng-if="subscription"> View </a></div>
+    </div>
+  </div>
+
+  <div ng-if="subscriptionsListCtrl.subscriptions===false && !subscriptionsListCtrl.error">
+    <div class="mt-lg text-center">
+      <loading animate="true" img-width="100" spinner="true" image="/assets/img/logos/zm_logo.svg" text="{{'subscriptions.searching' | translate}}" dots="3" active="subscriptionsListCtrl.active" reset="subscriptionsListCtrl.reset"></loading>
+    </div>
+  </div>
+
+  <div ng-if="subscriptionsListCtrl.subscriptions!==false && !subscriptionsListCtrl.subscriptions.length && !subscriptionsListCtrl.error">
+    <p class="text-light mb-md" translate="subscriptions.label.empty">You don't have any subscriptions, yet.</p>
+    <a href="{{subscriptionsListCtrl.baseLink}}" set-conversionpoint class="zm-btn small green m-none text-center action-upgrade" target="_blank"><span translate="subscriptions.button.upgrade">Upgrade</span></a>
+  </div>
+
+  <div ng-if="subscriptionsListCtrl.subscriptions && subscriptionsListCtrl.error">
+    <div class="mt-lg text-center">
+      <strong>Error!</strong>
+    </div>
+  </div>
+</div> <!-- / section-content -->
+</script><div type="text/ng-template" id="app/theme/layout/header/header.tpl.html">
+<nav role="navigation" class="navbar zm-website-header is-responsive">
+
+  <!-- Title -->
+  <div class="zm-website-header-inner">
+    <div class="zm-logo">
+      <a href="/" class="">
+        <img src="/assets/img/logos/zm_logo.svg" alt="Zenmate" />
+      </a>
+    </div>
+
+    <div class="navbar-header ml-auto my-auto">
+      <ul class="nav language-select">
+        <li class="dropdown pull-right">
+          <a href data-toggle="dropdown" class="dropdown-toggle">
+            <img class="country-flag" alt="{{headerCtrl.getCurrentRegion()}}" ng-src="{{'assets/img/flags/32/'+headerCtrl.getCurrentRegion().toLowerCase()+'.png'}}" />
+          </a>
+          <ul class="dropdown-menu">
+            <li ng-repeat="language in headerCtrl.languages" class="dropdown-item" ng-class="{active: headerCtrl.isCurrentLocale(language.locale)}">
+              <a href ng-click="headerCtrl.setCurrentLocale(language.locale)">
+                <img class="country-flag mr-sm" ng-src="{{'/assets/img/flags/32/'+(language.flag).toLowerCase()+'.png'}}" alt="{{language.flag}}" />
+                <span>{{language.title}}</span>
+              </a>
+            </li><!-- <li role="separator" class="divider"></li>
+          <li><a href="#">World</a></li> -->
+          </ul>
+        </li>
+
+      </ul>
+      <!-- Required bootstrap placeholder for the collapsed menu -->
+    </div>
+    <button class="navbar-toggler d-block d-sm-none" type="button" data-toggle="collapse" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation"
+        ng-click="headerCtrl.toggleNav()" ng-if="isLoggedIn" >
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+
+
+
+  <!-- Additional navbar items -->
+  <div class="collapse navbar-collapse" id="navbar-menu" ng-class="{in: !headerCtrl.navCollapsed}">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item-myaccount nav-top-menu-item hidden-lg hidden-md hidden-sm" ng-if="isLoggedIn" ng-class="{active: headerCtrl.isPageActive('app.account') }">
+        <a ui-sref="app.account">
+          <img class="icon-top-menu-item" src="/assets/img/icons/overview_blue.svg" alt="Icon" />
+          <span translate="account.title">Account overview</span>
+        </a>
+      </li>
+      <li class="nav-item-mydevices nav-top-menu-item hidden-lg hidden-md hidden-sm" ng-if="isLoggedIn" ng-class="{active: headerCtrl.isPageActive('app.devices') }">
+        <a ui-sref="app.settings">
+          <img class="icon-top-menu-item" src="/assets/img/icons/settings_blue.svg" alt="Icon" />
+          <span translate="settings.title">Settings</span>
+        </a>
+      </li>
+      <li class="nav-item-mydevices nav-top-menu-item hidden-lg hidden-md hidden-sm" ng-if="isLoggedIn" ng-class="{active: headerCtrl.isPageActive('app.devices') }">
+        <a ui-sref="app.devices">
+          <img class="icon-top-menu-item" src="/assets/img/icons/devices_blue.svg" alt="Icon" />
+          <span translate="devices.title">Devices</span>
+        </a>
+      </li>
+      <li class="nav-item-mysubscriptions nav-top-menu-item hidden-lg hidden-md hidden-sm" ng-if="isLoggedIn" ng-class="{active: headerCtrl.isPageActive('app.subscriptions') }">
+        <a ui-sref="app.subscriptions.list">
+          <img class="icon-top-menu-item" src="/assets/img/icons/transactions_blue.svg" alt="Icon" />
+          <span translate="subscriptions.title">Transactions</span>
+        </a>
+      </li>
+      <li class="nav-item-devices nav-top-menu-item hidden-lg hidden-md hidden-sm" ng-class="{active: headerCtrl.isPageActive('app.login-device') }" ng-if="headerCtrl.showMenuPages.loginDevice">
+        <a ui-sref="app.login-device">
+          <img class="icon-top-menu-item" src="/assets/img/icons/androidTV_blue.svg" alt="Icon" />
+          <span translate="login.device.title">Android TV</span>
+        </a>
+      </li>
+      <li class="nav-item-upgrades nav-top-menu-item hidden-lg hidden-md hidden-sm" ng-if="isLoggedIn" ng-class="{active: headerCtrl.isPageActive('app.support') }">
+        <a href ui-sref="app.support">
+          <img class="icon-top-menu-item" src="/assets/img/icons/support_blue.svg" alt="Icon" />
+          <span translate="support.title">My Support</span>
+        </a>
+      </li>
+      <li class="nav-item-support nav-top-menu-item hidden-lg hidden-md hidden-sm" ng-if="isLoggedIn">
+        <a href="{{headerCtrl.siteLink +headerCtrl.linksSidebar['privacy-policy']}}" target="_blank">
+          <img class="icon-top-menu-item" src="/assets/img/icons/icon_empty.png" alt="Icon" />
+          <span translate="privacy_policy.title">Privacy Policy</span>
+        </a>
+      </li>
+      <li class="nav-item-support nav-top-menu-item hidden-lg hidden-md hidden-sm" ng-if="isLoggedIn">
+        <a href="{{headerCtrl.siteLink +headerCtrl.linksSidebar['tos']}}" target="_blank">
+          <img class="icon-top-menu-item" src="/assets/img/icons/icon_empty.png" alt="Icon" />
+          <span translate="terms_and_conditions.title">Terms and Conditions</span>
+        </a>
+      </li>
+      <li class="nav-item-logout nav-top-menu-item ng-cloak" ng-if="isLoggedIn">
+        <a ui-sref="app.logout">
+          <img class="icon-top-menu-item" src="/assets/img/icons/icon_empty.png" alt="Icon" />
+          <span class="text-underline" translate="logout.button.logout">Log Out</span> <span class="text-faded">{{ account.get('userName') }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</nav></script><script type="text/ng-template" id="app/theme/layout/sidebar/sidebar.tpl.html"><div class="zm-navigation">
+  <div class="zm-navigation-menu">
+    <a ui-sref="app.account" ui-sref-active="link-active" class="zm-navigation-menu-item account-overview" translate="account.overview.title">Account overview</a>
+    <a ui-sref="app.settings" ui-sref-active="link-active" class="zm-navigation-menu-item settings" translate="settings.title">Settings</a>
+    <a ui-sref="app.devices" ui-sref-active="link-active" class="zm-navigation-menu-item devices" translate="devices.title">Devices</a>
+    <a ui-sref="app.subscriptions.list" ui-sref-active="link-active" class="zm-navigation-menu-item transactions" translate="subscriptions.title">Transactions</a>
+    <a ui-sref="app.login-device" ui-sref-active="link-active" class="zm-navigation-menu-item android-tv" translate="login.device.title"> Android TV></a>
+    <a ui-sref="app.support" ui-sref-active="link-active" class="zm-navigation-menu-item support" translate="support.title">Support</a>
+    <a ui-sref="app.logout" class="zm-navigation-menu-item" translate="logout.title">Log out</a></div>
+</div></script><script type="text/ng-template" id="app/theme/layout/public.tpl.html"><theme-header></theme-header>
+
+<section class="ng-cloak white-bg">
+  <div class="container ">
+
+    <!-- Content Panels -->
+    <div class="main" ui-view></div>
+
+  </div>
+
+</section>
+
+
+<!-- /Content -->
+
+<!--Footer-->
+<theme-footer></theme-footer>
+</script><script type="text/ng-template" id="app/theme/layout/loggedin.tpl.html"><!-- Header -->
+<theme-header></theme-header>
+<!-- Content -->
+<section>
+  <div class="zm-dashboard-container">
+
+    <!-- /Header -->
+    <aside class="zm-dashboard-sidebar" block-ui="sidebar">
+      <theme-sidebar></theme-sidebar>
+    </aside>
+    <div class="main zm-dashboard-content" ui-view></div>
+  </div>
+
+</section>
+<!-- /Content -->
+<!--Footer-->
+<theme-footer></theme-footer>
+
+<!--/Footer--></script><div type="text/ng-template" id="app/theme/layout/footer/footer.tpl.html"><div class="zm-website-footer">
+  <div class="zm-website-footer-container row pb-5 ">
+    <div class="zm-website-footer-container-cell col col-3 d-none d-md-block">
+      <h4 class="heading" translate="footer.downloads" >Downloads</h4>
+      <ul class="list">
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['products/vpn-for-mac']}}" ng-if="footerCtrl.linksFooter['products/vpn-for-mac'].length>0" translate="footer.vpn-for-mac" target="_blank">VPN for Mac</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['products/vpn-for-windows']}}" ng-if="footerCtrl.linksFooter['products/vpn-for-windows'].length>0" translate="footer.vpn-for-windows" target="_blank">VPN for Windows</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['products/vpn-app-for-ios']}}" ng-if="footerCtrl.linksFooter['products/vpn-app-for-ios'].length>0" translate="footer.vpn-for-ios" target="_blank">VPN for IOS</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['products/vpn-app-for-android']}}" ng-if="footerCtrl.linksFooter['products/vpn-app-for-android'].length>0" translate="footer.vpn-for-android" target="_blank">VPN for Android</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['products/vpn-extension-for-chrome']}}" ng-if="footerCtrl.linksFooter['products/vpn-extension-for-chrome'].length>0" translate="footer.vpn-for-chrome" target="_blank">VPN for Chrome</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['products/vpn-extension-for-firefox']}}" ng-if="footerCtrl.linksFooter['products/vpn-extension-for-firefox'].length>0" translate="footer.vpn-for-firefox" target="_blank">VPN for Firefox</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['products/vpn-extension-for-opera']}}" ng-if="footerCtrl.linksFooter['products/vpn-extension-for-opera'].length>0" translate="footer.vpn-for-opera" target="_blank">VPN for Opera</a></li>
+      </ul>
+    </div>
+    <div class="zm-website-footer-container-cell col col-3 d-none d-md-block">
+      <h4 class="heading" translate="footer.why-use-vpn" >Why use a VPN</h4>
+      <ul class="list">
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['academy/what-is-vpn']}}" ng-if="footerCtrl.linksFooter['academy/what-is-vpn'].length>0" translate="footer.what-is-vpn" target="_blank">What is a VPN?</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['academy/unblock-websites']}}" ng-if="footerCtrl.linksFooter['academy/unblock-websites'].length>0" translate="footer.unblock-websites" target="_blank">Unblock Websites</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['academy/hide-my-ip']}}" ng-if="footerCtrl.linksFooter['academy/hide-my-ip'].length>0" translate="footer.hide-my-ip" target="_blank">OpenVPN Tutorials</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['academy/private-browsing']}}" ng-if="footerCtrl.linksFooter['academy/private-browsing'].length>0" translate="footer.private-browsing" target="_blank">Private Browsing</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['academy/what-is-a-proxy']}}" ng-if="footerCtrl.linksFooter['academy/what-is-a-proxy'].length>0" translate="footer.what-is-a-proxy" target="_blank">What is a Proxy?</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['academy/how-to-unblock-youtube']}}" ng-if="footerCtrl.linksFooter['academy/how-to-unblock-youtube'].length>0" translate="footer.how-to-unblock-youtube" target="_blank">Unblock YouTube</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['academy']}}" ng-if="footerCtrl.linksFooter['academy'].length>0" translate="footer.read-more" target="_blank">Read more</a></li>
+      </ul>
+    </div>
+    <div class="zm-website-footer-container-cell col col-3 d-none d-md-block">
+      <h4 class="heading" translate="footer.information" >Information</h4>
+      <ul class="list">
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['jobs']}}" ng-if="footerCtrl.linksFooter['jobs'].length>0" translate="footer.jobs" target="_blank">Jobs</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['business']}}" ng-if="footerCtrl.linksFooter['business'].length>0" translate="footer.business" target="_blank">Business</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['about-us']}}" ng-if="footerCtrl.linksFooter['about-us'].length>0" translate="footer.about" target="_blank">Team</a></li>
+        <li class="list-item"><a href="{{footerCtrl.supportLink}}" ng-if="footerCtrl.supportLink.length>0" translate="support.title" target="_blank">Support</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['partner/affiliate']}}" ng-if="footerCtrl.linksFooter['partner/affiliate'].length>0" translate="footer.affiliate" target="_blank">Affiliate Program</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['imprint']}}" ng-if="footerCtrl.linksFooter['imprint'].length>0" translate="footer.imprint" target="_blank">Imprint</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['pricing']}}" ng-if="footerCtrl.linksFooter['imprint'].length>0" translate="footer.pricing" target="_blank">Pricing</a></li>
+        <li class="list-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['contact-us']}}" ng-if="footerCtrl.linksFooter['contact-us'].length>0" translate="footer.contact-us" target="_blank">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="zm-website-footer-container-cell col col-3 d-none d-md-block">
+      <h4 class="heading" translate="footer.mobile-stores" >Mobile Stores</h4>
+      <ul>
+        <li class="list-item"><a href="https://itunes.apple.com/us/app/zenmate-for-ios8-best-unblock/id903380113?mt=8"><img src="https://crm-cdn.zenguard.biz/crm/app_store_1531327232627.svg" alt="appstore"></a></li>
+        <li class="list-item"><a href="https://play.google.com/store/apps/details?id=com.zenmate.android"><img src="https://crm-cdn.zenguard.biz/crm/google_play_store_1531327240096.svg" alt="google play store"></a></li>
+      </ul>
+      <h4 class="heading" translate="footer.get-in-touch" >Get in touch!</h4>
+      <ul class="list">
+        <li class="list-item list-item-social"><a href="https://www.facebook.com/zenmate.io" target="_blank"><img src="https://crm-cdn.zenguard.biz/crm/facebook-bw_1531483331302.svg" alt="ZenMate on Facebook"></a></li>
+        <li class="list-item list-item-social"><a href="https://twitter.com/ZenMate" target="_blank"><img src="https://crm-cdn.zenguard.biz/crm/twitter-bw_1531483321099.svg" alt="ZenMate on Twitter"></a></li>
+        <li class="list-item list-item-social"><a href="https://www.linkedin.com/company/zenguard-gmbh" target="_blank"><img src="https://crm-cdn.zenguard.biz/crm/linkedIn-bw_1531483324553.svg" alt="ZenMate on LinkedIn"></a></li>
+        <li class="list-item list-item-social"><a href="https://vk.com/zenmateofficial" target="_blank"><img src="https://crm-cdn.zenguard.biz/crm/vk-bw_1531483315497.svg" alt="ZenMate on VK"></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="zm-website-footer-line">
+    <div class="zm-website-footer-line-inner">
+      <div class="zm-website-footer-line-list">
+        <div class="zm-website-footer-line-item"><span>Copyright © 2019 ZenMate</span></div>
+        <div class="zm-website-footer-line-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['security']}}" translate="footer.vulnerability" target="_blank">Vulnerability Reporting</a></div>
+        <div class="zm-website-footer-line-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['tos']}}" translate="footer.tos" target="_blank">Terms of Service</a></div>
+        <div class="zm-website-footer-line-item"><a href="{{footerCtrl.siteLink +footerCtrl.linksFooter['privacy-policy']}}" translate="footer.privacy" target="_blank">Privacy Policy</a></div>
+      </div>
+    </div>
+  </div>
+</div></script><script type="text/ng-template" id="app/theme/recaptcha/recaptcha.tpl.html"><div class="modal-header text-center">
+  <h3 class="modal-title">Prove to us that you're human​!</h3>
+</div>
+<div class="modal-body">
+  <div class="text-center">
+    <div vc-recaptcha key="reCaptchaCtrl.recaptcha" theme="light" on-success="reCaptchaCtrl.onSuccess(reCaptchaCtrl.response)"></div>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="container-buttons">
+    <button type="button" class="cg-line-btn cg-line-btn-sm cg-darkgray" ng-disabled="!reCaptchaCtrl.rcData" ng-click="ok()">Ok</button>
+    <button type="button" class="cg-line-btn cg-line-btn-sm cg-darkgray" ng-click="reCaptchaCtrl.cancel()">Cancel</button>
+  </div>
+</div></script>        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-50834855-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-40329910-24');
+        </script>
+    </body>
+</html>
