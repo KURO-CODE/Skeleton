@@ -1,0 +1,31 @@
+/* START spinner */
+.spinner-back
+{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1550;
+    background-color: #000;
+    opacity: .5;
+}
+
+.spinner
+{
+    margin: auto;
+    margin-top: 25%;
+    font-size: 35px;
+    color: #fff;
+    width: 300px;
+    height: 36px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.spinner i
+{
+    font-size: 35px;
+    color: #fff;
+}
+/* END spinner */
