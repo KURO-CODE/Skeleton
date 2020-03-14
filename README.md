@@ -6,9 +6,11 @@
 
 * Skeleton is a Social Engineering tool attack switcher
 * Type: Phishing Tool
+* Websites languages: English, French
 * Attack Switcher for phishing: Facebook, Linkedin, Twitter, Pinterest, Google, Instagram, Microsoft, Netflix, Paypal, Wordpress, Amazon, Ebay, CyberghostVPN, NordVPN, ExpressVPN, ZenmateVPN, PCS, N26, Roblox, Steam, Binance, Etoro, Bittrex, Coinbase.
 
 # DISCLAMER: Program for educational purposes!!!
+* Your account security is our top priority! Protect your account by enabling 2FA.
 
 #### Skeleton 1.0 beta
 * Name:....Skeleton
