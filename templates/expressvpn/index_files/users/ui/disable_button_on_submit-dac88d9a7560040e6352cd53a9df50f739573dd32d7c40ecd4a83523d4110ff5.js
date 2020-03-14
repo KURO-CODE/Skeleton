@@ -1,0 +1,1 @@
+$(function(){"use strict";$("form").on("submit",function(e){$(".form-submit").prop("disabled",!0)})});

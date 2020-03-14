@@ -1,0 +1,1 @@
+$(function(){"use strict";function e(){n.val()?t.attr("href",i+"?email="+encodeURIComponent(n.val())):t.attr("href",i)}var t=$(".link-email"),n=$(".email-field"),i=t.attr("href");$(window).on("load",function(t){e()}),n.on("input",function(t){e()})});
