@@ -467,11 +467,11 @@ function CHECK_FILES {
 			sleep 3
 			select_attack
 		else
-			echo "$B ok"
+			echo -e "$B ok"
 			if [ ! -d "$TMP_FILES/$WS/$IDXF" ]; then
 				sleep 0.01
 			else
-				echo "$C ok"
+				echo -e "$C ok"
 				cp -r $TMP_FILES/$WS/$IDXF/ $TMP/
 			fi
 			if [ ! -d "$TMP_FILES/$WS/$SLang" ]; then
